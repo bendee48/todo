@@ -1,15 +1,10 @@
-function Project(title) {
-  this._title = title;
-}
+import Project from './project.js';
+import Todo from './todo.js';
 
-Object.defineProperty(Project.prototype, 'title', {
-  get: function() {
-    return this._title;
-  },
-  set: function(title) {
-    this._title = title;
-  }
-});
+let obj = {title: "A title", description: "A description", dueDate: 'tomoroow', priority: 'High'}
+let foo = new Todo(obj)
+console.log(foo.description)
 
-let foo = new Project('A Project Title')
-console.log(foo.title)
+let pop = new Project('A project title')
+console.log(pop.title)
+
