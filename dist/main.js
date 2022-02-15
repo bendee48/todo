@@ -1,1 +1,1 @@
-console.log("Cooking with gas (again)");
+(()=>{function t(t){this._title=t}Object.defineProperty(t.prototype,"title",{get:function(){return this._title},set:function(t){this._title=t}});let e=new t("A Project Title");console.log(e.title)})();
