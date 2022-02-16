@@ -1,10 +1,14 @@
-import Todo from './todo.js';
-
 function Project(title) {
   this._title = title;
   this._todos = [];
+  // Save all created Project instances into Project.all 
+  Project.all.push(this);
 }
 
+// Static method containing all created Projects
+Project.all = [];
+
+// Getters and setters for Project attributes
 Object.defineProperties(Project.prototype, {
   title: {
     get: function() {
@@ -21,8 +25,8 @@ Object.defineProperties(Project.prototype, {
   }
 });
 
+// Add a todo to a Project
 Project.prototype.addTodo = function(todo) {
-  if (!(todo instanceof Todo)) throw "Can only add an instance of Todo to a project";
   this._todos.push(todo);
 }
 
