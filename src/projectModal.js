@@ -34,6 +34,14 @@ const projectModal = (()=> {
     return submitInput;
   }
 
+  const createCloseBtn = ()=> {
+    const btn = document.createElement('button');
+    btn.innerText = 'Close';
+    btn.classList.add('close-btn');
+    btn.addEventListener('click', closeModal);
+    return btn;
+  }
+
   const createForm = ()=> {
     const form = document.createElement('form');
     form.classList.add('project-form');
@@ -48,8 +56,10 @@ const projectModal = (()=> {
   const createModal = ()=> {
     const pageModal = createPageModal();
     const mainModal = createMainModal();
+    const closeBtn = createCloseBtn();
     const form = createForm();
     pageModal.appendChild(mainModal);
+    mainModal.appendChild(closeBtn);
     mainModal.appendChild(form);
     return pageModal;
   }
