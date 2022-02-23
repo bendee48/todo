@@ -1,22 +1,21 @@
-import Project from './project.js';
 import projectPage from './projectPage.js'
 
 const projectModal = (()=> {
   const pageContainer = document.querySelector('.page-container');
 
-  const createPageModal = ()=> {
+  const _createPageModal = ()=> {
     const pageModal = document.createElement('div');
     pageModal.classList.add('project-modal');
     return pageModal;
   }
   
-  const createMainModal = ()=> {
+  const _createMainModal = ()=> {
     const modalMain = document.createElement('div');
     modalMain.classList.add('modal-main');
     return modalMain;
   }
 
-  const createTitleInput = ()=> {
+  const _createTitleInput = ()=> {
     const titleInput = document.createElement('input');
     titleInput.type = "text";
     titleInput.id = "title";
@@ -27,59 +26,65 @@ const projectModal = (()=> {
     return titleInput;
   }
 
-  const createSubmitInput = ()=> {
+  const _createSubmitInput = ()=> {
     const submitInput = document.createElement('input');
     submitInput.type = "submit";
     submitInput.value = "Create Project";
     return submitInput;
   }
 
-  const createCloseBtn = ()=> {
+  const _createCloseBtn = (projectObj)=> {
     const btn = document.createElement('button');
     btn.innerText = 'Close';
     btn.classList.add('close-btn');
-    btn.addEventListener('click', closeModal);
+    btn.addEventListener('click', function() {
+      _closeModal(projectObj);
+    });
     return btn;
   }
 
-  const createForm = ()=> {
+  const _createForm = (newProject, projectObj)=> {
     const form = document.createElement('form');
     form.classList.add('project-form');
-    const titleInput = createTitleInput();
+    const titleInput = _createTitleInput();
     form.appendChild(titleInput);
-    const submitInput = createSubmitInput();
+    const submitInput = _createSubmitInput();
     form.appendChild(submitInput);
-    form.addEventListener('submit', createProject);
+    form.addEventListener('submit', function(e) {
+      _createProject(e, newProject, projectObj);
+    });
     return form;
   }
 
-  const createModal = ()=> {
-    const pageModal = createPageModal();
-    const mainModal = createMainModal();
-    const closeBtn = createCloseBtn();
-    const form = createForm();
+  const _createModal = (newProject, projectObj)=> {
+    const pageModal = _createPageModal();
+    const mainModal = _createMainModal();
+    const closeBtn = _createCloseBtn(projectObj);
+    const form = _createForm(newProject, projectObj);
     pageModal.appendChild(mainModal);
     mainModal.appendChild(closeBtn);
     mainModal.appendChild(form);
     return pageModal;
   }
 
-  const createProject = (e)=> {
+  const _createProject = (e, newProject, projectObj)=> {
     e.preventDefault();
     const formData = new FormData(e.target);
-    new Project(formData.get('title'));
-    closeModal();
-    projectPage.displayProjects();
+    newProject.title = formData.get('title');
+    _closeModal();
+    // Change to pubsub
+    // projectPage.displayProjects(Project.all); 
+    projectPage.displayProjects(projectObj.all)
   }
 
-  const closeModal = ()=> {
+  const _closeModal = (projectObj)=> {
+    if (projectObj) projectObj.all.pop(); // If passed projectObj remove last project from Project.all
     const modal = document.querySelector('.project-modal');
-    console.log(modal)
     modal.remove();
   }
   
-  const run = ()=> {
-    pageContainer.appendChild(createModal());
+  const run = (newProject, projectObj)=> {
+    pageContainer.appendChild(_createModal(newProject, projectObj));
   }
 
   return { run }

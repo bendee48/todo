@@ -18,7 +18,10 @@ projectPage.displayProjects(projects);
 
 // Add event listner to project button
 const projectBtn = document.querySelector('.project-btn');
-projectBtn.addEventListener('click', projectModal.run);
+projectBtn.addEventListener('click', function() {
+  let newProject = new Project();
+  projectModal.run(newProject, Project);
+})
 
 
 
