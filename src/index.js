@@ -13,12 +13,12 @@ let project1 = new Project('Another project title')
 project.addTodo(todo)
 
 // Display projects
-projectPage.displayProjects()
+let projects = Project.all;
+projectPage.displayProjects(projects);
 
 // Add event listner to project button
 const projectBtn = document.querySelector('.project-btn');
 projectBtn.addEventListener('click', projectModal.run);
 
-console.log(Project.all)
 
 
