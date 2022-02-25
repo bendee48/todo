@@ -1,5 +1,3 @@
-import projectPage from './projectPage.js'
-
 const projectModal = (()=> {
   const pageContainer = document.querySelector('.page-container');
 
@@ -43,7 +41,7 @@ const projectModal = (()=> {
     return btn;
   }
 
-  const _createForm = (newProject, projectObj)=> {
+  const _createForm = (newProject, projectObj, eventObj)=> {
     const form = document.createElement('form');
     form.classList.add('project-form');
     const titleInput = _createTitleInput();
@@ -51,30 +49,28 @@ const projectModal = (()=> {
     const submitInput = _createSubmitInput();
     form.appendChild(submitInput);
     form.addEventListener('submit', function(e) {
-      _createProject(e, newProject, projectObj);
+      _createProject(e, newProject, projectObj, eventObj);
     });
     return form;
   }
 
-  const _createModal = (newProject, projectObj)=> {
+  const _createModal = (newProject, projectObj, eventObj)=> {
     const pageModal = _createPageModal();
     const mainModal = _createMainModal();
     const closeBtn = _createCloseBtn(projectObj);
-    const form = _createForm(newProject, projectObj);
+    const form = _createForm(newProject, projectObj, eventObj);
     pageModal.appendChild(mainModal);
     mainModal.appendChild(closeBtn);
     mainModal.appendChild(form);
     return pageModal;
   }
 
-  const _createProject = (e, newProject, projectObj)=> {
+  const _createProject = (e, newProject, projectObj, eventObj)=> {
     e.preventDefault();
     const formData = new FormData(e.target);
     newProject.title = formData.get('title');
     _closeModal();
-    // Change to pubsub
-    // projectPage.displayProjects(Project.all); 
-    projectPage.displayProjects(projectObj.all)
+    eventObj.run("New Project", projectObj.all); // Run Project Page update
   }
 
   const _closeModal = (projectObj)=> {
@@ -83,8 +79,8 @@ const projectModal = (()=> {
     modal.remove();
   }
   
-  const run = (newProject, projectObj)=> {
-    pageContainer.appendChild(_createModal(newProject, projectObj));
+  const run = (newProject, projectObj, eventObj)=> {
+    pageContainer.appendChild(_createModal(newProject, projectObj, eventObj));
   }
 
   return { run }
