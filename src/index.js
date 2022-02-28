@@ -26,6 +26,7 @@ projectBtn.addEventListener('click', function() {
   projectModal.run(newProject, Project, eventObserver);
 })
 
+
 // Testing EventObserver
 // function hello(name) { console.log(`Hello ${name}`)};
 // eventObserver.subscribe({subName: 'Updating the DOM', funcToCall: hello});

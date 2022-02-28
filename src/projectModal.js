@@ -80,12 +80,18 @@ const projectModal = (()=> {
     const modal = document.querySelector('.project-modal');
     modal.remove();
   }
+
+  const _focusTitleInput = ()=> {
+    const input = document.getElementById('title');
+    input.focus()
+  }
   
   const run = (newProjectObj, project, eventObj)=> {
     newProject = newProjectObj;
     projectObj = project;
     eventObserver = eventObj;
     pageContainer.appendChild(_createModal());
+    _focusTitleInput(); //Focus input after modal load to stop return triggering a new modal
   }
 
   return { run }
