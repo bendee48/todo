@@ -1,5 +1,8 @@
 const projectModal = (()=> {
   const pageContainer = document.querySelector('.page-container');
+  let newProject;
+  let projectObj;
+  let eventObserver;
 
   const _createPageModal = ()=> {
     const pageModal = document.createElement('div');
@@ -31,56 +34,58 @@ const projectModal = (()=> {
     return submitInput;
   }
 
-  const _createCloseBtn = (projectObj)=> {
+  const _createCloseBtn = ()=> {
     const btn = document.createElement('button');
     btn.innerText = 'Close';
     btn.classList.add('close-btn');
     btn.addEventListener('click', function() {
-      _closeModal(projectObj);
+      _closeModal(true);
     });
     return btn;
   }
 
-  const _createForm = (newProject, projectObj, eventObj)=> {
+  const _createForm = ()=> {
     const form = document.createElement('form');
     form.classList.add('project-form');
     const titleInput = _createTitleInput();
     form.appendChild(titleInput);
     const submitInput = _createSubmitInput();
     form.appendChild(submitInput);
-    form.addEventListener('submit', function(e) {
-      _createProject(e, newProject, projectObj, eventObj);
-    });
+    form.addEventListener('submit', _createProject);
     return form;
   }
 
-  const _createModal = (newProject, projectObj, eventObj)=> {
+  const _createModal = ()=> {
     const pageModal = _createPageModal();
     const mainModal = _createMainModal();
-    const closeBtn = _createCloseBtn(projectObj);
-    const form = _createForm(newProject, projectObj, eventObj);
+    const closeBtn = _createCloseBtn();
+    const form = _createForm();
     pageModal.appendChild(mainModal);
     mainModal.appendChild(closeBtn);
     mainModal.appendChild(form);
     return pageModal;
   }
 
-  const _createProject = (e, newProject, projectObj, eventObj)=> {
+  const _createProject = (e)=> {
     e.preventDefault();
     const formData = new FormData(e.target);
     newProject.title = formData.get('title');
     _closeModal();
-    eventObj.run("New Project", projectObj.all); // Run Project Page update
+    eventObserver.run("New Project", projectObj.all); // Run Project Page update
   }
 
-  const _closeModal = (projectObj)=> {
-    if (projectObj) projectObj.all.pop(); // If passed projectObj remove last project from Project.all
+  const _closeModal = (deleteProj)=> {
+    // If passed true, delete the last project (a new project is created with the add project btn)
+    if (deleteProj) projectObj.all.pop(); 
     const modal = document.querySelector('.project-modal');
     modal.remove();
   }
   
-  const run = (newProject, projectObj, eventObj)=> {
-    pageContainer.appendChild(_createModal(newProject, projectObj, eventObj));
+  const run = (newProjectObj, project, eventObj)=> {
+    newProject = newProjectObj;
+    projectObj = project;
+    eventObserver = eventObj;
+    pageContainer.appendChild(_createModal());
   }
 
   return { run }
