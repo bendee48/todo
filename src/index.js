@@ -1,8 +1,9 @@
 import Project from './project.js';
 import Todo from './todo.js';
 import projectPage from './projectPage.js';
-import newProjectModal from './newProjectModal.js';
+import newProjectModal from './newProjectModal.js'; 
 import eventObserver from './eventObserver.js';
+import modal from './modal.js';
 
 // Testing Creating a todo
 let obj = {title: "A title", description: "A description", dueDate: 'tomoroow', priority: 'High'}
@@ -20,9 +21,8 @@ projectPage.displayProjects(projects);
 // Add event listner to project button
 const projectBtn = document.querySelector('.project-btn');
 projectBtn.addEventListener('click', function() {
-  // let newProject = new Project();
-  // newProjectModal.run(newProject, Project, eventObserver);
-  newProjectModal.run(eventObserver);
+  // newProjectModal.run(eventObserver);
+  modal.run();
 })
 
 // Testing EventObserver

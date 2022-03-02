@@ -1,10 +1,10 @@
-const projectModal = (()=> {
+const modal = (()=> {
   const pageContainer = document.querySelector('.page-container');
 
-  const _createPageModal = ()=> {
-    const pageModal = document.createElement('div');
-    pageModal.classList.add('project-modal');
-    return pageModal;
+  const _createModalBackdrop = ()=> {
+    const modalBackdrop = document.createElement('div');
+    modalBackdrop.classList.add('modal-backdrop');
+    return modalBackdrop;
   }
   
   const _createMainModal = ()=> {
@@ -17,23 +17,21 @@ const projectModal = (()=> {
     const btn = document.createElement('button');
     btn.innerText = 'Close';
     btn.classList.add('close-btn');
-    btn.addEventListener('click', function() {
-      _closeModal();
-    });
+    btn.addEventListener('click', _closeModal);
     return btn;
   }
 
   const _createModal = ()=> {
-    const pageModal = _createPageModal();
+    const modalBackdrop = _createModalBackdrop();
     const mainModal = _createMainModal();
     const closeBtn = _createCloseBtn();
-    pageModal.appendChild(mainModal);
+    modalBackdrop.appendChild(mainModal);
     mainModal.appendChild(closeBtn);
-    return pageModal;
+    return modalBackdrop;
   }
 
   const _closeModal = ()=> {
-    const modal = document.querySelector('.project-modal');
+    const modal = document.querySelector('.modal-backdrop');
     modal.remove();
   }
   
@@ -44,4 +42,4 @@ const projectModal = (()=> {
   return { run }
 })();
 
-export default projectModal;
+export default modal;

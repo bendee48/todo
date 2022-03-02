@@ -2,7 +2,6 @@ import Project from './project.js';
 
 const newProjectModal = (()=> {
   const pageContainer = document.querySelector('.page-container');
-  // let newProject;
   let projectObj = Project;
   let eventObserver;
 
@@ -78,8 +77,6 @@ const newProjectModal = (()=> {
   }
 
   const _closeModal = ()=> {
-    // If passed true, delete the last project (a new project is created with the add project btn)
-    // if (deleteProj) projectObj.all.pop(); 
     const modal = document.querySelector('.project-modal');
     modal.remove(); // Removes modal from DOM
   }
@@ -90,8 +87,6 @@ const newProjectModal = (()=> {
   }
   
   const run = (eventObj)=> {
-    // newProject = newProjectObj;
-    // projectObj = project;
     eventObserver = eventObj;
     pageContainer.appendChild(_createModal());
     _focusTitleInput(); //Focus input after modal load to stop return triggering a new modal
