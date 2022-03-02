@@ -1,4 +1,7 @@
+import projectModal from './projectModal.js';
+
 const projectPage = (()=> {
+  const modal = projectModal;
   const container = document.querySelector('.main-container');
   const projectsContainer = createProjectsContainer();
   container.appendChild(projectsContainer);
@@ -10,11 +13,17 @@ const projectPage = (()=> {
     return projectsContainer;
   }
 
+  // Add Event Listener to Project Div
+  const _addListener = (projectDiv)=> {
+    projectDiv.addEventListener('click', modal.run); //TODO
+  }
+
   // Create div to hold a Project
   const projectContainer = (title)=> {
     let div = document.createElement('div');
     div.classList.add('project');
     div.innerText = title;
+    _addListener(div);
     return div;
   }
 

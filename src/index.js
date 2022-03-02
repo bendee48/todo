@@ -1,10 +1,8 @@
 import Project from './project.js';
 import Todo from './todo.js';
-import projectPage from './projectPage.js'
-import projectModal from './projectModal.js'
-import eventObserver from './eventObserver.js'
-
-
+import projectPage from './projectPage.js';
+import newProjectModal from './newProjectModal.js';
+import eventObserver from './eventObserver.js';
 
 // Testing Creating a todo
 let obj = {title: "A title", description: "A description", dueDate: 'tomoroow', priority: 'High'}
@@ -23,9 +21,8 @@ projectPage.displayProjects(projects);
 const projectBtn = document.querySelector('.project-btn');
 projectBtn.addEventListener('click', function() {
   let newProject = new Project();
-  projectModal.run(newProject, Project, eventObserver);
+  newProjectModal.run(newProject, Project, eventObserver);
 })
-
 
 // Testing EventObserver
 // function hello(name) { console.log(`Hello ${name}`)};
