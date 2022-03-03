@@ -17,29 +17,31 @@ const modal = (()=> {
     const btn = document.createElement('button');
     btn.innerText = 'Close';
     btn.classList.add('close-btn');
-    btn.addEventListener('click', _closeModal);
+    btn.addEventListener('click', closeModal);
     return btn;
   }
 
-  const _createModal = ()=> {
+  const _createModal = (content)=> {
     const modalBackdrop = _createModalBackdrop();
     const mainModal = _createMainModal();
     const closeBtn = _createCloseBtn();
     modalBackdrop.appendChild(mainModal);
     mainModal.appendChild(closeBtn);
+    mainModal.appendChild(content);
     return modalBackdrop;
   }
 
-  const _closeModal = ()=> {
+  const closeModal = ()=> {
     const modal = document.querySelector('.modal-backdrop');
     modal.remove();
   }
   
-  const run = ()=> {
-    pageContainer.appendChild(_createModal());
+  const run = (content)=> {
+    let modal = _createModal(content);
+    pageContainer.appendChild(modal);
   }
 
-  return { run }
+  return { run, closeModal }
 })();
 
 export default modal;
