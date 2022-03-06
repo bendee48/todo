@@ -9,6 +9,8 @@ const modal = (()=> {
   
   const _createMainModal = ()=> {
     const modalMain = document.createElement('div');
+    modalMain.setAttribute("role", "dialog");
+    modalMain.tabIndex = -1;
     modalMain.classList.add('modal-main');
     return modalMain;
   }
@@ -35,10 +37,16 @@ const modal = (()=> {
     const modal = document.querySelector('.modal-backdrop');
     modal.remove();
   }
+
+  const focusCloseBtn = ()=> {
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.focus();
+  }
   
   const run = (content)=> {
     let modal = _createModal(content);
     pageContainer.appendChild(modal);
+    focusCloseBtn(); // Pull focus onto modal (close button) when opened, away from trigger
   }
 
   return { run, closeModal }
