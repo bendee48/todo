@@ -1,7 +1,7 @@
-import projectModal from './projectModal.js';
+import modal from './modal.js';
+import projectContent from './projectContent.js';
 
 const projectPage = (()=> {
-  const modal = projectModal;
   const container = document.querySelector('.main-container');
   const projectsContainer = createProjectsContainer();
   container.appendChild(projectsContainer);
@@ -15,14 +15,17 @@ const projectPage = (()=> {
 
   // Add Event Listener to Project Div
   const _addListener = (projectDiv)=> {
-    projectDiv.addEventListener('click', modal.run); //TODO
+    projectDiv.addEventListener('click', function(e) {
+      modal.run(projectContent.run(e));
+    });
   }
 
   // Create div to hold a Project
-  const projectContainer = (title)=> {
+  const projectContainer = (title, index)=> {
     let div = document.createElement('div');
     div.classList.add('project');
     div.innerText = title;
+    div.setAttribute('data-index', index);
     _addListener(div);
     return div;
   }
@@ -30,8 +33,8 @@ const projectPage = (()=> {
   // Append all projects to .main-container
   const displayProjects = (projects)=> {
     projectsContainer.innerHTML = "";
-    projects.forEach((project)=> {
-      projectsContainer.appendChild(projectContainer(project.title));
+    projects.forEach((project, index)=> {
+      projectsContainer.appendChild(projectContainer(project.title, index));
     })
   }
 

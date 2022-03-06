@@ -7,12 +7,15 @@ import newProjectForm from './newProjectForm.js';
 
 // Testing Creating a todo
 let obj = {title: "A title", description: "A description", dueDate: 'tomoroow', priority: 'High'}
+let obj1 = {title: "A new todo", description: "Do some things", dueDate: 'Next year', priority: 'Low'}
 let todo = new Todo(obj)
+let todo1 = new Todo(obj1)
 
 // Testing Creating projects adding a todo to project
 let project = Project.create('A project title')
 let project1 = Project.create('Another project title')
 project.addTodo(todo)
+project.addTodo(todo1)
 
 // Display projects
 let projects = Project.all;
@@ -36,6 +39,8 @@ eventObserver.subscribe({subName: "New Project", funcToCall: projectPage.display
 eventObserver.subscribe({subName: "Create Project", funcToCall: Project.create});
 // Close Modal
 eventObserver.subscribe({subName: "Close Modal", funcToCall: modal.closeModal})
+
+console.log(Project.all)
 
 
 
