@@ -3,7 +3,7 @@ import Todo from './todo.js';
 import projectPage from './projectPage.js';
 import eventObserver from './eventObserver.js';
 import modal from './modal.js';
-import newProjectContent from './newProjectContent.js';
+import newProjectForm from './newProjectForm.js';
 
 // Testing Creating a todo
 let obj = {title: "A title", description: "A description", dueDate: 'tomoroow', priority: 'High'}
@@ -21,7 +21,7 @@ projectPage.displayProjects(projects);
 // Add event listener to new project button
 const projectBtn = document.querySelector('.project-btn');
 projectBtn.addEventListener('click', function() {
-  modal.run(newProjectContent.run());
+  modal.run(newProjectForm.run());
 })
 
 // Testing EventObserver

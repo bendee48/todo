@@ -1,7 +1,7 @@
 import eventObserver from './eventObserver.js';
 import Project from './project.js';
 
-const newProjectContent = (()=> {
+const newProjectForm = (()=> {
   const container = document.createElement('div');
   container.classList.add('new-project-content');
   const projectObj = Project;
@@ -62,4 +62,4 @@ const newProjectContent = (()=> {
   return { run }
 })();
 
-export default newProjectContent;
+export default newProjectForm;
