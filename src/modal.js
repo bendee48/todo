@@ -23,14 +23,27 @@ const modal = (()=> {
     return btn;
   }
 
+  const _modalContentContainer = ()=> {
+    const container = document.createElement('div');
+    container.classList.add('content-container');
+    return container;
+  }
+
   const _createModal = (content)=> {
     const modalBackdrop = _createModalBackdrop();
     const mainModal = _createMainModal();
+    const contentContainer = _modalContentContainer();
     const closeBtn = _createCloseBtn();
     modalBackdrop.appendChild(mainModal);
     mainModal.appendChild(closeBtn);
-    mainModal.appendChild(content);
+    mainModal.appendChild(contentContainer);
+    contentContainer.appendChild(content);
     return modalBackdrop;
+  }
+
+  const clearContent = ()=> {
+    let container = document.querySelector('.content-container');
+    container.innerHTML = "";
   }
 
   const closeModal = ()=> {
@@ -44,12 +57,13 @@ const modal = (()=> {
   }
   
   const run = (content)=> {
+    if (document.querySelector('.modal-backdrop')) closeModal(); // If a modal is already open. close previous one
     let modal = _createModal(content);
     pageContainer.appendChild(modal);
     focusCloseBtn(); // Pull focus onto modal (close button) when opened, away from trigger
   }
 
-  return { run, closeModal }
+  return { run, closeModal, clearContent }
 })();
 
 export default modal;

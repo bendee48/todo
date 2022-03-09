@@ -1,4 +1,6 @@
-import Project from './project.js'
+import Project from './project.js';
+import newTodoForm from './newTodoForm.js';
+import modal from './modal.js';
 
 const projectContent = (()=> {
   const container = document.createElement('div');
@@ -8,6 +10,15 @@ const projectContent = (()=> {
     const h1 = document.createElement('h1');
     h1.innerText = title;
     return h1;
+  }
+
+  const _newTodoBtn = ()=> {
+    const btn = document.createElement('button');
+    btn.innerText = "New Todo";
+    btn.addEventListener('click', function() {
+      modal.run(newTodoForm.run());
+    });
+    return btn;
   }
   
   const todoContainer = ()=> {
@@ -34,6 +45,7 @@ const projectContent = (()=> {
     _clearContent();
     project = Project.all[e.target.dataset.index];
     container.appendChild(projectTitle(project.title));
+    container.appendChild(_newTodoBtn());
     container.appendChild(addTodos());
     return container;
   }
