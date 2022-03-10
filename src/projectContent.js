@@ -4,7 +4,8 @@ import modal from './modal.js';
 
 const projectContent = (()=> {
   const container = document.createElement('div');
-  let project;
+  container.classList.add('project-content');
+  // let project;
 
   const projectTitle = (title)=> {
     const h1 = document.createElement('h1');
@@ -26,8 +27,9 @@ const projectContent = (()=> {
     return todoContainer;
   }
   
-  const addTodos = ()=> {
+  const addTodos = (project)=> {
     let container = todoContainer();
+    container.classList.add('todos');
     project.todos.forEach(todo => {
       let todoBox = document.createElement('div');
       todoBox.classList.add('todo');
@@ -41,16 +43,24 @@ const projectContent = (()=> {
     container.innerHTML = "";
   }
 
+  const updateTodos = (project)=> {
+    document.querySelector('.todos').remove();
+    let updatedTodos = addTodos(project);
+    container.append(updatedTodos);
+  }
+
   const run = (e)=> {
     _clearContent();
-    project = Project.all[e.target.dataset.index];
+    let project = Project.all[e.target.dataset.index];
+    container.dataset.index = e.target.dataset.index;
     container.appendChild(projectTitle(project.title));
     container.appendChild(_newTodoBtn());
-    container.appendChild(addTodos());
+    container.appendChild(addTodos(project));
+    console.log(container)
     return container;
   }
 
-  return { run }
+  return { run, updateTodos }
 })();
 
 export default projectContent;

@@ -1,3 +1,8 @@
+import Todo from './todo.js';
+import Project from './project.js';
+import eventObserver from './eventObserver.js';
+import projectContent from './projectContent.js';
+
 const newTodoForm = (()=> {
   const container = document.createElement('div');
   container.classList.add('new-todo-content');
@@ -25,10 +30,13 @@ const newTodoForm = (()=> {
 
   const _dueDate = ()=> {
     const date = document.createElement('input');
+    let dateNow = new Date(Date.now());
     date.type = 'date';
     date.id = 'date';
     date.name = 'date';
     date.title = 'Due Date';
+    date.required = true;
+    date.min = dateNow.toISOString().split('T').shift(); // Set to use future dates only
     return date;
   }
 
@@ -72,18 +80,27 @@ const newTodoForm = (()=> {
     form.appendChild(priority);
     const submitInput = _submitInput();
     form.appendChild(submitInput);
-    form.addEventListener('submit', ()=> { console.log('Creating a todo')});
+    form.addEventListener('submit', _createTodo);
     return form;
   }
 
-  // const _createProject = (e)=> {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   let title = formData.get('title');
-  //   eventObserver.run("Create Project", title); // Runs the Project.create function
-  //   eventObserver.run("Close Modal"); // Closes an open modal
-  //   eventObserver.run("New Project", projectObj.all); // Run Project Page update
-  // } 
+  const _createTodo = (e)=> {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    let title = formData.get('title');
+    let description = formData.get('description');
+    let dueDate = formData.get('date');
+    let priority = formData.get('priority');
+    let todo = new Todo({title, description, dueDate, priority});
+    // Select open project modal to find project to add todo too
+    let projectElement = document.querySelector('.project-content'); 
+    let project = Project.all[projectElement.dataset.index];
+    project.todos.push(todo);
+    // eventObserver.run("Create Project", title); // Runs the Project.create function
+    eventObserver.run("Close Modal"); // Closes an open modal
+    projectContent.updateTodos(project); // Updating todos 
+    // eventObserver.run("New Project", projectObj.all); // Run Project Page update
+  } 
 
   const _clearContent = ()=> {
     // Clears previous content from the container before each call
