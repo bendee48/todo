@@ -19,7 +19,9 @@ const modal = (()=> {
     const btn = document.createElement('button');
     btn.innerText = 'Close';
     btn.classList.add('close-btn');
-    btn.addEventListener('click', closeModal);
+    btn.addEventListener('click', function() {
+      closeModal();
+    });
     return btn;
   }
 
@@ -47,8 +49,15 @@ const modal = (()=> {
   }
 
   const closeModal = ()=> {
-    const modal = document.querySelector('.modal-backdrop');
+    const modal = document.querySelector('.modal-open');
     modal.remove();
+    // If a modal is currently hidden bring it back into the light baby
+    if (document.querySelector('.modal-closed')) {
+      let modal = document.querySelector('.modal-closed');
+      modal.style.visibility = 'visible';
+      modal.classList.add('modal-open');
+      modal.classList.remove('modal-closed');
+    }
   }
 
   const focusCloseBtn = ()=> {
@@ -57,8 +66,15 @@ const modal = (()=> {
   }
   
   const run = (content)=> {
-    if (document.querySelector('.modal-backdrop')) closeModal(); // If a modal is already open. close previous one
+    // If a modal is already open, close hide that one
+    if (document.querySelector('.modal-open')) {
+      let modal = document.querySelector('.modal-open');
+      modal.style.visibility = 'hidden';
+      modal.classList.remove('modal-open');
+      modal.classList.add('modal-closed');
+    } 
     let modal = _createModal(content);
+    modal.classList.add('modal-open');
     pageContainer.appendChild(modal);
     focusCloseBtn(); // Pull focus onto modal (close button) when opened, away from trigger
   }
