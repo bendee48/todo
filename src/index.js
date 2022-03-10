@@ -1,6 +1,6 @@
 import Project from './project.js';
 import Todo from './todo.js';
-import projectPage from './projectPage.js';
+import projectsPage from './projectsPage.js';
 import eventObserver from './eventObserver.js';
 import modal from './modal.js';
 import newProjectForm from './newProjectForm.js';
@@ -19,7 +19,7 @@ project.addTodo(todo1)
 
 // Display projects
 let projects = Project.all;
-projectPage.displayProjects(projects);
+projectsPage.displayProjects(projects);
 
 // Add event listener to new project button
 const projectBtn = document.querySelector('.project-btn');
@@ -34,7 +34,7 @@ projectBtn.addEventListener('click', function() {
 
 // Event Observers
 // Update Project display on creation of a new Project
-eventObserver.subscribe({subName: "New Project", funcToCall: projectPage.displayProjects});
+eventObserver.subscribe({subName: "New Project", funcToCall: projectsPage.displayProjects});
 // Create and Save a Project
 eventObserver.subscribe({subName: "Create Project", funcToCall: Project.create});
 // Close Modal

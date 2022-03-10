@@ -1,7 +1,7 @@
 import modal from './modal.js';
 import projectContent from './projectContent.js';
 
-const projectPage = (()=> {
+const projectsPage = (()=> {
   const container = document.querySelector('.main-container');
   const projectsContainer = createProjectsContainer();
   container.appendChild(projectsContainer);
@@ -41,4 +41,4 @@ const projectPage = (()=> {
   return { displayProjects }
 })();
 
-export default projectPage
+export default projectsPage
