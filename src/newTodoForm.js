@@ -92,15 +92,17 @@ const newTodoForm = (()=> {
     let dueDate = formData.get('date');
     let priority = formData.get('priority');
     let todo = new Todo({title, description, dueDate, priority});
+    _addTodoToProject(todo);
+    eventObserver.run("Close Modal"); // Closes an open modal
+  } 
+
+  const _addTodoToProject = (todo)=> {
     // Select open project modal to find project to add todo too
     let projectElement = document.querySelector('.project-content'); 
     let project = Project.all[projectElement.dataset.index];
     project.todos.push(todo);
-    // eventObserver.run("Create Project", title); // Runs the Project.create function
-    eventObserver.run("Close Modal"); // Closes an open modal
-    projectContent.updateTodos(project); // Updating todos 
-    // eventObserver.run("New Project", projectObj.all); // Run Project Page update
-  } 
+    projectContent.updateTodos(project); // Updating todos for Project
+  }
 
   const _clearContent = ()=> {
     // Clears previous content from the container before each call

@@ -51,7 +51,10 @@ const modal = (()=> {
   const closeModal = ()=> {
     const modal = document.querySelector('.modal-open');
     modal.remove();
-    // If a modal is currently hidden bring it back into the light baby
+    _reOpenModal(); // If a modal is currently hidden bring it back into the light
+  }
+
+  const _reOpenModal = ()=> {
     if (document.querySelector('.modal-closed')) {
       let modal = document.querySelector('.modal-closed');
       modal.style.visibility = 'visible';
@@ -64,15 +67,18 @@ const modal = (()=> {
     const closeBtn = document.querySelector('.close-btn');
     closeBtn.focus();
   }
-  
-  const run = (content)=> {
-    // If a modal is already open, close hide that one
+
+  const _hideModal = ()=> {
     if (document.querySelector('.modal-open')) {
       let modal = document.querySelector('.modal-open');
       modal.style.visibility = 'hidden';
       modal.classList.remove('modal-open');
       modal.classList.add('modal-closed');
     } 
+  }
+  
+  const run = (content)=> {
+    _hideModal(); // If a modal is already open, close/hide that one
     let modal = _createModal(content);
     modal.classList.add('modal-open');
     pageContainer.appendChild(modal);
