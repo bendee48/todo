@@ -1,6 +1,7 @@
 import Project from './project.js';
 import newTodoForm from './newTodoForm.js';
 import modal from './modal.js';
+import todoContent from './todoContent.js';
 
 const projectContent = (()=> {
   const container = document.createElement('div');
@@ -33,6 +34,9 @@ const projectContent = (()=> {
     project.todos.forEach(todo => {
       let todoBox = document.createElement('div');
       todoBox.classList.add('todo');
+      todoBox.addEventListener('click', function(e) {
+        modal.run(todoContent.run(e));
+      });
       todoBox.innerText = todo.title;
       container.appendChild(todoBox);
     });
@@ -56,7 +60,6 @@ const projectContent = (()=> {
     container.appendChild(projectTitle(project.title));
     container.appendChild(_newTodoBtn());
     container.appendChild(addTodos(project));
-    console.log(container)
     return container;
   }
 
