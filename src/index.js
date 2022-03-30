@@ -4,6 +4,7 @@ import projectsPage from './projectsPage.js';
 import eventObserver from './eventObserver.js';
 import modal from './modal.js';
 import newProjectForm from './newProjectForm.js';
+import projectContent from './projectContent.js';
 
 // Testing Creating a todo
 let obj = {title: "A title", description: "A description", dueDate: 'tomoroow', priority: 'High'}
@@ -39,6 +40,8 @@ eventObserver.subscribe({subName: "New Project", funcToCall: projectsPage.displa
 eventObserver.subscribe({subName: "Create Project", funcToCall: Project.create});
 // Close Modal
 eventObserver.subscribe({subName: "Close Modal", funcToCall: modal.closeModal})
+// Update Todos
+eventObserver.subscribe({subName: "Update Todos", funcToCall: projectContent.updateTodos})
 
 console.log(Project.all)
 

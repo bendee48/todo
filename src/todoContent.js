@@ -1,6 +1,5 @@
 import Project from './project.js';
-import modal from './modal.js';
-import projectContent from './projectContent.js';
+import eventObserver from './eventObserver.js';
 
 const todoContent = (()=> {
   const container = document.createElement('div');
@@ -29,8 +28,8 @@ const todoContent = (()=> {
   const saveChanges = (todo)=> {
     const title = document.querySelector('.todo-title');
     todo.title = title.innerText;
-    projectContent.updateTodos(project); // Update edited todo
-    modal.closeModal();
+    eventObserver.run('Update Todos', project)
+    eventObserver.run('Close Modal');
   }
 
   const _clearContent = ()=> {
