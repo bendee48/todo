@@ -59,7 +59,13 @@ const todoContent = (()=> {
   const saveChanges = (todo)=> {
     // Select todo content from open modal
     const title = document.querySelector('.todo-content .todo-title');
+    const description = document.querySelector('.todo-content .todo-description');
+    const dueDate = document.querySelector('.todo-content .todo-duedate');
+    const priority = document.querySelector('.todo-content .todo-priority');
     todo.title = title.innerText;
+    todo.description = description.innerText;
+    todo.dueDate = dueDate.innerText;
+    todo.priority = priority.innerText;
     eventObserver.run('Update Todos', project)
     eventObserver.run('Close Modal');
   }
