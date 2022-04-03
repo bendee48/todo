@@ -16,12 +16,43 @@ const todoContent = (()=> {
     return btn;
   }
 
-  const displayTodo = (todo)=> {
+  const todoTitle = (todo)=> {
     let title = document.createElement('p');
     title.classList.add('todo-title');
     title.innerText = todo.title;
     title.contentEditable = true;
-    container.append(title);
+    return title;
+  }
+
+  const todoDescription = (todo)=> {
+    let description = document.createElement('p');
+    description.classList.add('todo-description');
+    description.innerText = todo.description;
+    description.contentEditable = true;
+    return description;
+  }
+
+  const todoDueDate = (todo)=> {
+    let dueDate = document.createElement('p');
+    dueDate.classList.add('todo-duedate');
+    dueDate.innerText = todo.dueDate;
+    dueDate.contentEditable = true;
+    return dueDate;
+  }
+
+  const todoPriority = (todo)=> {
+    let priority = document.createElement('p');
+    priority.classList.add('todo-priority');
+    priority.innerText = todo.priority;
+    priority.contentEditable = true;
+    return priority;
+  }
+
+  const displayTodo = (todo)=> {
+    container.append(todoTitle(todo));
+    container.append(todoDescription(todo));
+    container.append(todoDueDate(todo));
+    container.append(todoPriority(todo));
     container.append(saveBtn(todo));
   }
 

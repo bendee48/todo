@@ -59,7 +59,7 @@ const projectContent = (()=> {
       todoBox.classList.add('todo');
       // todoBox.addEventListener('click', function(e) {
       //   modal.run(todoContent.run(e));
-      // });
+      // }); //MOVED TO TITLE CREATION
       todoBox.appendChild(todoTitle(todo));
       todoBox.appendChild(todoDueDate(todo));
       todoBox.appendChild(todoPriority(todo));
