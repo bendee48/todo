@@ -26,7 +26,8 @@ const todoContent = (()=> {
   }
 
   const saveChanges = (todo)=> {
-    const title = document.querySelector('.todo-title');
+    // Select todo content from open modal
+    const title = document.querySelector('.todo-content .todo-title');
     todo.title = title.innerText;
     eventObserver.run('Update Todos', project)
     eventObserver.run('Close Modal');

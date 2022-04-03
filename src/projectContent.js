@@ -6,7 +6,6 @@ import todoContent from './todoContent.js';
 const projectContent = (()=> {
   const container = document.createElement('div');
   container.classList.add('project-content');
-  // let project;
 
   const projectTitle = (title)=> {
     const h1 = document.createElement('h1');
@@ -27,6 +26,30 @@ const projectContent = (()=> {
     const todoContainer = document.createElement('div');
     return todoContainer;
   }
+
+  const todoTitle = (todo)=> {
+    const title = document.createElement('h2');
+    title.innerText = todo.title;
+    title.classList.add('todo-title');
+    title.addEventListener('click', function(e) {
+      modal.run(todoContent.run(e))
+    })
+    return title;
+  }
+
+  const todoDueDate = (todo)=> {
+    const dueDate = document.createElement('div');
+    dueDate.innerText = todo.dueDate;
+    dueDate.classList.add('todo-dueDate');
+    return dueDate;
+  }
+
+  const todoPriority = (todo)=> {
+    const priority = document.createElement('span');
+    priority.innerText = todo.priority;
+    priority.classList.add('todo-priority');
+    return priority;
+  }
   
   const addTodos = (project)=> {
     let container = todoContainer();
@@ -34,10 +57,12 @@ const projectContent = (()=> {
     project.todos.forEach(todo => {
       let todoBox = document.createElement('div');
       todoBox.classList.add('todo');
-      todoBox.addEventListener('click', function(e) {
-        modal.run(todoContent.run(e));
-      });
-      todoBox.innerText = todo.title;
+      // todoBox.addEventListener('click', function(e) {
+      //   modal.run(todoContent.run(e));
+      // });
+      todoBox.appendChild(todoTitle(todo));
+      todoBox.appendChild(todoDueDate(todo));
+      todoBox.appendChild(todoPriority(todo));
       container.appendChild(todoBox);
     });
     return container;

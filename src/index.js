@@ -43,8 +43,6 @@ eventObserver.subscribe({subName: "Close Modal", funcToCall: modal.closeModal})
 // Update Todos
 eventObserver.subscribe({subName: "Update Todos", funcToCall: projectContent.updateTodos})
 
-console.log(Project.all)
-
 
 
 
