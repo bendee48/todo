@@ -80,8 +80,8 @@ const projectContent = (()=> {
 
   const run = (e)=> {
     _clearContent();
-    let project = Project.all[e.target.dataset.index];
-    container.dataset.index = e.target.dataset.index;
+    let project = Project.all[e.currentTarget.dataset.index];
+    container.dataset.index = e.currentTarget.dataset.index;
     container.appendChild(projectTitle(project.title));
     container.appendChild(_newTodoBtn());
     container.appendChild(addTodos(project));
