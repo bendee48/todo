@@ -20,12 +20,19 @@ const projectsPage = (()=> {
     });
   }
 
+  // Create element to hold Project title
+  const _titleElement = (title)=> {
+    const element = document.createElement('span');
+    element.innerText = title;
+    return element;
+  }
+
   // Create div to hold a Project
   const projectContainer = (title, index)=> {
     let div = document.createElement('div');
     div.classList.add('project');
-    div.innerText = title;
     div.setAttribute('data-index', index);
+    div.appendChild(_titleElement(title));
     _addListener(div);
     return div;
   }
