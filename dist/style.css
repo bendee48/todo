@@ -64,10 +64,22 @@ select {
   font: inherit;
 }
 
-/* Main Styling */
+/*** Main Styling ***/
+
+:root {
+  --border: 1px solid red;
+}
 
 body {
-  background-color: aliceblue;
+  font-family: Calibri, Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(220, 210, 255);
+}
+
+/* Header */
+
+header nav h1 {
+  text-align: center;
+  font-size: 2rem;
 }
 
 /* Page Container */
@@ -84,25 +96,33 @@ body {
 
 /* Project */
 
+.projects-container {
+  width: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  
+  gap: 2rem;
+}
+
 .project {
-  margin-top: 1em;
   height: 150px;
-  width: 150px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
   background: red;
+  background: url('images/folder.svg') no-repeat center;
+}
+
+.project span {
+  padding: 0.2rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 10px black;
+  background: white;
 }
 
 /* Project Modal */
-
-/* CAN DELETE AFTER REFS REMOVED */
-/* .project-modal {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
-  background: rgb(55,55,55,.7);
-} */ 
 
 .modal-backdrop {
   position: fixed;
@@ -112,8 +132,4 @@ body {
   left: 0;
   z-index: 1;
   background: rgb(55,55,55,.7);
-}
-
-.modal-main {
-  border: 1px solid yellow;
 }
