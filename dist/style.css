@@ -68,6 +68,8 @@ select {
 
 :root {
   --border: 1px solid red;
+  --light-grey: #b6b6b6;
+  --dark-grey: #444444;
 }
 
 body {
@@ -111,15 +113,65 @@ header nav h1 {
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  background: red;
+  border-radius: 1rem;
+  background: var(--light-grey);
   background: url('images/folder.svg') no-repeat center;
 }
 
 .project span {
   padding: 0.2rem 1rem;
   border-radius: 1rem;
-  box-shadow: 5px 5px 10px black;
+  box-shadow: 3px 3px 7px rgb(80, 80, 80);
   background: white;
+}
+
+.new-project {
+  background: url('images/new-folder.svg') no-repeat center;
+}
+
+/* Project Plus Button */
+
+.button_plus {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid var(--light-grey);
+}
+
+.button_plus:after {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 75%;
+  background: var(--light-grey);
+  top: 50%;
+  left: 50%;
+}
+
+.button_plus:before {
+  content: '';
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--light-grey);
+  height: 75%;
+  width: 4px;
+}
+
+.button_plus:hover:before,
+.button_plus:hover:after {
+  background: #fff;
+  transition: 0.2s;
+}
+
+.button_plus:hover {
+  background-color: var(--dark-grey);
+  border: 1px solid white;
+  transition: 0.2s;
 }
 
 /* Project Modal */

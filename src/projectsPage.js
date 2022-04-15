@@ -37,9 +37,24 @@ const projectsPage = (()=> {
     return div;
   }
 
-  // Append all projects to .main-container
+  // Create New Project folder
+  const newFolder = ()=> {
+    let div = document.createElement('div');
+    div.classList.add('project', 'new-project');
+    div.appendChild(newFolderBtn());
+    return div;
+  }
+
+  const newFolderBtn = ()=> {
+    let btn = document.createElement('div');
+    btn.classList.add('button_plus');
+    return btn;
+  }
+
+  // Append all projects to projectsContainer
   const displayProjects = (projects)=> {
     projectsContainer.innerHTML = "";
+    projectsContainer.appendChild(newFolder()); // Append new folder button first
     projects.forEach((project, index)=> {
       projectsContainer.appendChild(projectContainer(project.title, index));
     })
