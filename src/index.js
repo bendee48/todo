@@ -23,10 +23,10 @@ let projects = Project.all;
 projectsPage.displayProjects(projects);
 
 // Add event listener to new project button
-const projectBtn = document.querySelector('.project-btn');
-projectBtn.addEventListener('click', function() {
-  modal.run(newProjectForm.run());
-})
+// const projectBtn = document.querySelector('.project-btn');
+// projectBtn.addEventListener('click', function() {
+//   modal.run(newProjectForm.run());
+// }) // TODO DELETE
 
 // Testing EventObserver
 // function hello(name) { console.log(`Hello ${name}`)};

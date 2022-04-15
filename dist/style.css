@@ -162,13 +162,13 @@ header nav h1 {
   width: 4px;
 }
 
-.button_plus:hover:before,
-.button_plus:hover:after {
+.new-project:hover .button_plus:before,
+.new-project:hover .button_plus:after {
   background: #fff;
   transition: 0.2s;
 }
 
-.button_plus:hover {
+.new-project:hover .button_plus {
   background-color: var(--dark-grey);
   border: 1px solid white;
   transition: 0.2s;
