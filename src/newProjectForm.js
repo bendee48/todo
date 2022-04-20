@@ -14,6 +14,7 @@ const newProjectForm = (()=> {
     titleInput.title = "Project Title";
     titleInput.placeholder = "Project Title";
     titleInput.required = true;
+    titleInput.maxLength = "30";
     return titleInput;
   }
 
