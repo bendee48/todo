@@ -79,9 +79,8 @@ const todoContent = (()=> {
     // Get current open project
     let projectElement = document.querySelector('.project-content');
     project = Project.all[projectElement.dataset.index];
-    // Get clicked on todo object
-    let todoTitle = e.target.innerText;
-    let todo = project.todos.find(todo => todo.title === todoTitle);
+    // Get clicked on todo object. currentTarget gets element listener was originally set on
+    let todo = project.todos[e.currentTarget.dataset.index];
     displayTodo(todo);
     return container;
   }
