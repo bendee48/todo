@@ -193,12 +193,19 @@ header nav h1 {
 .modal-main {
   max-height: 90%;
   max-width: 90%;
+  min-width: 50vw;
   padding: 1rem;
   border-radius: .5rem;
   background: var(--berry);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 900px) {
+  .modal-main {
+    width: 60%;
+  }
+}
+
+@media (max-width: 600px) {
   .modal-main {
     width: 90%;
   }
@@ -253,11 +260,96 @@ form input[type=submit]:hover {
 
 .content-container {
   clear: both;
-  padding: 4rem 4rem;
+  padding: 1rem 1rem;
 }
 
 @media (max-width: 500px) {
   .content-container {
-    padding: 4rem 1rem;
+    padding: 0;
   }
+}
+
+/* New Project Content */
+
+.new-project-content {
+  padding: 2rem;
+}
+
+@media (max-width: 500px) {
+  .new-project-content {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Project Content */
+
+.project-content > h1 {
+  margin-bottom: 1rem;
+}
+
+.project-content button {
+  padding: .2rem 1rem;
+  margin-bottom: .5rem;
+  border-radius: .5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.project-content button:hover {
+  background: #949494;
+  color: rgb(238, 238, 238);
+}
+
+/* .project-content {
+  padding: 0 2rem;
+}
+
+@media (max-width: 500px) {
+  .project-content {
+    padding: 1rem 1rem;
+  }
+} */
+
+/* Todos */
+
+.todo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 .5rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.todo :nth-child(2) {
+  margin-left: auto;
+  /* Pushes last 2 items in todo to the right */
+}
+
+.todo:hover {
+  background: rgba(199, 199, 199, 0.3)
+}
+
+.todo h2 {
+  font-size: 1.4rem;
+}
+
+.todo-priority {
+  font-size: .95rem;
+  padding: 0 .5rem;
+  border-radius: .5rem;
+  text-align: center;
+  background: var(--light-grey);
+}
+
+.todo .high {
+  background: rgb(255, 94, 0);
+}
+
+.todo .medium {
+  background: rgb(252, 140, 76);
+}
+
+.todo .low {
+  background: rgb(253, 196, 162);
 }
