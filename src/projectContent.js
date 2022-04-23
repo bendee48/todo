@@ -15,7 +15,7 @@ const projectContent = (()=> {
 
   const _newTodoBtn = ()=> {
     const btn = document.createElement('button');
-    btn.innerText = "New Todo";
+    btn.innerText = "+ new todo";
     btn.addEventListener('click', function() {
       modal.run(newTodoForm.run());
     });

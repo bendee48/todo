@@ -48,12 +48,12 @@ const newTodoForm = (()=> {
     prioritySelect.id = 'priority';
     prioritySelect.name = 'priority';
     prioritySelect.title = 'priority';
-    option1.value = "Low";
-    option1.text = "Low";
-    option2.value = "Medium";
-    option2.text = "Medium";
-    option3.value = "High";
-    option3.text = "High";
+    option1.value = "low";
+    option1.text = "low";
+    option2.value = "medium";
+    option2.text = "medium";
+    option3.value = "high";
+    option3.text = "high";
     prioritySelect.add(option1);
     prioritySelect.add(option2);
     prioritySelect.add(option3);
