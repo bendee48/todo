@@ -2,6 +2,7 @@ import Project from './project.js';
 import newTodoForm from './newTodoForm.js';
 import modal from './modal.js';
 import todoContent from './todoContent.js';
+import format from 'date-fns/format';
 
 const projectContent = (()=> {
   const container = document.createElement('div');
@@ -36,7 +37,8 @@ const projectContent = (()=> {
 
   const _todoDueDate = (todo)=> {
     const dueDate = document.createElement('div');
-    dueDate.innerText = todo.dueDate;
+    const date = format(new Date(todo.dueDate), 'do MMM y');
+    dueDate.innerText = date;
     dueDate.classList.add('todo-dueDate');
     return dueDate;
   }
