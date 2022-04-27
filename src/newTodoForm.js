@@ -14,6 +14,7 @@ const newTodoForm = (()=> {
     titleInput.name = "title";
     titleInput.title = "Todo Title";
     titleInput.placeholder = "Todo Title";
+    titleInput.maxLength = 15;
     titleInput.required = true;
     return titleInput;
   }
