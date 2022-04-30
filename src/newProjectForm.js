@@ -21,6 +21,7 @@ const newProjectForm = (()=> {
   const _createSubmitInput = ()=> {
     const submitInput = document.createElement('input');
     submitInput.type = "submit";
+    submitInput.classList.add('btn');
     submitInput.value = "Create Project";
     return submitInput;
   }

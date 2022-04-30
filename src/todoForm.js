@@ -3,7 +3,7 @@ import Project from './project.js';
 import eventObserver from './eventObserver.js';
 import projectContent from './projectContent.js';
 
-const newTodoForm = (()=> {
+const todoForm = (()=> {
   const container = document.createElement('div');
   container.classList.add('new-todo-content');
 
@@ -29,7 +29,7 @@ const newTodoForm = (()=> {
     return description;
   }
 
-  const _dueDate = ()=> {
+  const dueDate = (value)=> {
     const date = document.createElement('input');
     let dateNow = new Date(Date.now());
     date.type = 'date';
@@ -38,10 +38,11 @@ const newTodoForm = (()=> {
     date.title = 'Due Date';
     date.required = true;
     date.min = dateNow.toISOString().split('T').shift(); // Set to use future dates only
+    date.value = value;
     return date;
   }
 
-  const _prioritySelect = ()=> {
+  const prioritySelect = (defaultPriority)=> {
     const prioritySelect = document.createElement('select');
     const option1 = document.createElement('option');
     const option2 = document.createElement('option');
@@ -51,10 +52,13 @@ const newTodoForm = (()=> {
     prioritySelect.title = 'priority';
     option1.value = "low";
     option1.text = "low";
+    if (defaultPriority === "low") option1.selected = true;
     option2.value = "medium";
     option2.text = "medium";
+    if (defaultPriority === "medium") option2.selected = true;
     option3.value = "high";
     option3.text = "high";
+    if (defaultPriority === "high") option3.selected = true;
     prioritySelect.add(option1);
     prioritySelect.add(option2);
     prioritySelect.add(option3);
@@ -65,6 +69,7 @@ const newTodoForm = (()=> {
     const submitInput = document.createElement('input');
     submitInput.type = "submit";
     submitInput.value = "Create Todo";
+    submitInput.classList.add('btn');
     return submitInput;
   }
 
@@ -75,9 +80,9 @@ const newTodoForm = (()=> {
     form.appendChild(titleInput);
     const description = _description();
     form.appendChild(description);
-    const dueDate = _dueDate();
-    form.appendChild(dueDate);
-    const priority = _prioritySelect();
+    const date = dueDate();
+    form.appendChild(date);
+    const priority = prioritySelect();
     form.appendChild(priority);
     const submitInput = _submitInput();
     form.appendChild(submitInput);
@@ -120,7 +125,7 @@ const newTodoForm = (()=> {
     return _content();
   }
 
-  return { run }
+  return { run, dueDate, prioritySelect }
 })();
 
-export default newTodoForm;
+export default todoForm;

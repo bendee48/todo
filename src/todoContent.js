@@ -1,30 +1,31 @@
 import Project from './project.js';
 import eventObserver from './eventObserver.js';
+import todoForm from './todoForm.js';
 
 const todoContent = (()=> {
   const container = document.createElement('div');
   container.classList.add('todo-content');
   let project;
 
-  const saveBtn = (todo)=> {
+  const _saveBtn = (todo)=> {
     const btn = document.createElement('button');
-    btn.classList.add('save-btn');
+    btn.classList.add('save-btn', 'btn');
     btn.innerText = 'Save and Close'
     btn.addEventListener('click', function() {
-      saveChanges(todo);
+      _saveChanges(todo);
     });
     return btn;
   }
 
-  const todoTitle = (todo)=> {
-    let title = document.createElement('p');
+  const _todoTitle = (todo)=> {
+    let title = document.createElement('h1');
     title.classList.add('todo-title');
     title.innerText = todo.title;
     title.contentEditable = true;
     return title;
   }
 
-  const todoDescription = (todo)=> {
+  const _todoDescription = (todo)=> {
     let description = document.createElement('p');
     description.classList.add('todo-description');
     description.innerText = todo.description;
@@ -32,40 +33,39 @@ const todoContent = (()=> {
     return description;
   }
 
-  const todoDueDate = (todo)=> {
-    let dueDate = document.createElement('p');
-    dueDate.classList.add('todo-duedate');
-    dueDate.innerText = todo.dueDate;
-    dueDate.contentEditable = true;
+  const _todoDueDate = (todo)=> {
+    let dueDate = todoForm.dueDate(todo.dueDate);
     return dueDate;
   }
 
-  const todoPriority = (todo)=> {
-    let priority = document.createElement('p');
-    priority.classList.add('todo-priority');
-    priority.innerText = todo.priority;
-    priority.contentEditable = true;
+  const _todoPriority = (todo)=> {
+    // let priority = document.createElement('p');
+    // priority.classList.add('todo-priority');
+    // priority.innerText = todo.priority;
+    // priority.contentEditable = true;
+    let priority = todoForm.prioritySelect(todo.priority);
     return priority;
   }
 
-  const displayTodo = (todo)=> {
-    container.append(todoTitle(todo));
-    container.append(todoDescription(todo));
-    container.append(todoDueDate(todo));
-    container.append(todoPriority(todo));
-    container.append(saveBtn(todo));
+  const _displayTodo = (todo)=> {
+    container.append(_todoTitle(todo));
+    container.append(_todoDescription(todo));
+    container.append(_todoDueDate(todo));
+    container.append(_todoPriority(todo));
+    container.append(_saveBtn(todo));
   }
 
-  const saveChanges = (todo)=> {
+  const _saveChanges = (todo)=> {
     // Select todo content from open modal
     const title = document.querySelector('.todo-content .todo-title');
     const description = document.querySelector('.todo-content .todo-description');
-    const dueDate = document.querySelector('.todo-content .todo-duedate');
-    const priority = document.querySelector('.todo-content .todo-priority');
+    const date = document.querySelector('input[type=date]');
+    // const priority = document.querySelector('.todo-content .todo-priority');
+    const priority = document.querySelector('#priority');
     todo.title = title.innerText;
     todo.description = description.innerText;
-    todo.dueDate = dueDate.innerText;
-    todo.priority = priority.innerText;
+    todo.dueDate = date.value;
+    todo.priority = priority.value;
     eventObserver.run('Update Todos', project)
     eventObserver.run('Close Modal');
   }
@@ -81,7 +81,7 @@ const todoContent = (()=> {
     project = Project.all[projectElement.dataset.index];
     // Get clicked on todo object. currentTarget gets element listener was originally set on
     let todo = project.todos[e.currentTarget.dataset.index];
-    displayTodo(todo);
+    _displayTodo(todo);
     return container;
   }
 

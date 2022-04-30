@@ -1,5 +1,5 @@
 import Project from './project.js';
-import newTodoForm from './newTodoForm.js';
+import todoForm from './todoForm.js';
 import modal from './modal.js';
 import todoContent from './todoContent.js';
 import format from 'date-fns/format';
@@ -18,7 +18,7 @@ const projectContent = (()=> {
     const btn = document.createElement('button');
     btn.innerText = "+ new todo";
     btn.addEventListener('click', function() {
-      modal.run(newTodoForm.run());
+      modal.run(todoForm.run());
     });
     return btn;
   }
