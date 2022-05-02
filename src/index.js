@@ -7,8 +7,8 @@ import newProjectForm from './newProjectForm.js';
 import projectContent from './projectContent.js';
 
 // Testing Creating a todo
-let obj = {title: "A title", description: "A description", dueDate: '3000-02-05', priority: 'high'}
-let obj1 = {title: "A new todo", description: "Do some things", dueDate: '4378-04-10', priority: 'low'}
+let obj = {title: "A title", description: "A description", dueDate: '2023-02-05', priority: 'high'}
+let obj1 = {title: "A new todo", description: "Do some things", dueDate: '2022-04-10', priority: 'low'}
 let todo = new Todo(obj)
 let todo1 = new Todo(obj1)
 

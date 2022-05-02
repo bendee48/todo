@@ -371,11 +371,15 @@ form input[type=text]:focus {
   text-align: center;
 }
 
-.todo-content :nth-child(-n+2) {
+.todo-content .todo-title,
+.todo-content .todo-description {
   align-self: stretch;
+  border-radius: .3rem;
+  border: 1px solid rgb(238, 238, 238, .2);
 }
 
-.todo-content :nth-child(-n+2):hover {
+.todo-content .todo-title:hover,
+.todo-content .todo-description:hover {
   border-radius: .3rem;
   background: rgb(238, 238, 238, .5);
 }
@@ -385,6 +389,14 @@ form input[type=text]:focus {
   font-style: italic;
   font-size: .9rem;
   color: var(--dark-gray);
+}
+
+/* Errors */
+
+.error {
+  font-size: .8rem;
+  color: rgb(0, 255, 55);
+  border: 1px solid rgb(0, 255, 55);
 }
 
 

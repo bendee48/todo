@@ -39,10 +39,6 @@ const todoContent = (()=> {
   }
 
   const _todoPriority = (todo)=> {
-    // let priority = document.createElement('p');
-    // priority.classList.add('todo-priority');
-    // priority.innerText = todo.priority;
-    // priority.contentEditable = true;
     let priority = todoForm.prioritySelect(todo.priority);
     return priority;
   }
@@ -60,14 +56,30 @@ const todoContent = (()=> {
     const title = document.querySelector('.todo-content .todo-title');
     const description = document.querySelector('.todo-content .todo-description');
     const date = document.querySelector('input[type=date]');
-    // const priority = document.querySelector('.todo-content .todo-priority');
     const priority = document.querySelector('#priority');
+    if (_checkForTitle(title)) return;
     todo.title = title.innerText;
     todo.description = description.innerText;
     todo.dueDate = date.value;
     todo.priority = priority.value;
     eventObserver.run('Update Todos', project)
     eventObserver.run('Close Modal');
+  }
+
+  const _checkForTitle = (title)=> {
+    if (title.innerText === "") {
+      if (document.querySelector('.error')) return true; // Return if error msg already shown
+      title.before(_titleErrorMessage());
+      return true;
+    }
+    return false;
+  }
+
+  const _titleErrorMessage = ()=> {
+    let p = document.createElement('p');
+    p.innerText = 'A title must be present'
+    p.classList.add('error');
+    return p;
   }
 
   const _clearContent = ()=> {
