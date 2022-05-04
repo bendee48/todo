@@ -391,6 +391,16 @@ form input[type=text]:focus {
   color: var(--dark-gray);
 }
 
+.todo-content .todo-description {
+  max-height: 10rem;
+  overflow: auto;
+}
+
+.todo-content .todo-title {
+  max-height: 7rem;
+  overflow: auto;
+}
+
 /* Errors */
 
 .error {

@@ -57,9 +57,9 @@ const todoContent = (()=> {
     const description = document.querySelector('.todo-content .todo-description');
     const date = document.querySelector('input[type=date]');
     const priority = document.querySelector('#priority');
-    if (_checkForTitle(title)) return;
-    todo.title = title.innerText;
-    todo.description = description.innerText;
+    if (_checkForTitle(title) || _checkTitleLength(title)) return;
+    todo.title = title.innerText.trim();
+    todo.description = description.innerText.trim();
     todo.dueDate = date.value;
     todo.priority = priority.value;
     eventObserver.run('Update Todos', project)
@@ -68,17 +68,26 @@ const todoContent = (()=> {
 
   const _checkForTitle = (title)=> {
     if (title.innerText === "") {
-      if (document.querySelector('.error')) return true; // Return if error msg already shown
-      title.before(_titleErrorMessage());
+      if (document.querySelector('.presence-error')) return true; // Return if error msg already shown
+      title.before(_titleErrorMessage("Title must be present.", 'presence'));
       return true;
     }
     return false;
   }
 
-  const _titleErrorMessage = ()=> {
+  const _checkTitleLength = (title)=> {
+    if (title.innerText.length > 24){
+      if (document.querySelector('.length-error')) return true; // Return if error msg already shown
+      title.before(_titleErrorMessage("Title must be less than 20 characters.", 'length'));
+      return true;
+    }
+    return false;
+  }
+
+  const _titleErrorMessage = (msg, type)=> {
     let p = document.createElement('p');
-    p.innerText = 'A title must be present'
-    p.classList.add('error');
+    p.innerText = msg;
+    p.classList.add('error', `${type}-error`);
     return p;
   }
 
