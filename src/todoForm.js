@@ -106,7 +106,7 @@ const todoForm = (()=> {
     // Select open project modal to find project to add todo too
     let projectElement = document.querySelector('.project-content'); 
     let project = Project.all[projectElement.dataset.index];
-    project.todos.push(todo);
+    project.addTodo(todo);
     projectContent.updateTodos(project); // Updating todos for Project
   }
 

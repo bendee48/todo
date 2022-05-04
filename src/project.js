@@ -1,8 +1,6 @@
 function Project(title) {
   this._title = title;
   this._todos = [];
-  // Save all created Project instances into Project.all 
-  // Project.all.push(this);
 }
 
 // Static method containing all created Projects
@@ -35,11 +33,21 @@ Object.defineProperties(Project.prototype, {
 // Add a todo to a Project
 Project.prototype.addTodo = function(todo) {
   this._todos.push(todo);
+  this._sortTodos();
 }
 
 // Save Project Object
 Project.prototype.save = function() {
   Project.all.push(this);
+}
+
+// Helper sort function to sort todos by dueDate
+Project.prototype._sortTodos = function() {
+  return this._todos.sort((a,b) => {
+    if (a.dueDate < b.dueDate) return -1;
+    if (a.dueDate > b.dueDate) return 1;
+    return 0;
+  })
 }
 
 export default Project;
