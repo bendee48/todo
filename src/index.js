@@ -35,7 +35,7 @@ projectsPage.displayProjects(projects);
 
 // Event Observers
 // Update Project display on creation of a new Project
-eventObserver.subscribe({subName: "New Project", funcToCall: projectsPage.displayProjects});
+eventObserver.subscribe({subName: "Display Projects", funcToCall: projectsPage.displayProjects});
 // Create and Save a Project
 eventObserver.subscribe({subName: "Create Project", funcToCall: Project.create});
 // Close Modal

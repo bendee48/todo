@@ -13,6 +13,11 @@ Project.create = function(title) {
   return project;
 }
 
+// Static method to delete a Project from it's index
+Project.delete = function({index}) {
+  Project.all.splice(index, 1);
+}
+
 // Getters and setters for Project attributes
 Object.defineProperties(Project.prototype, {
   title: {
