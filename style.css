@@ -69,8 +69,11 @@ select {
 :root {
   --border: 1px solid red;
   --light-grey: #b6b6b6;
+  --super-light-grey: #f3f3f3;
   --dark-grey: #444444;
+  --grey-highlight: #949494;
   --berry: #c44061;
+  --high-priority: #ff5e00;
 }
 
 body {
@@ -88,6 +91,10 @@ body {
   background: #949494;
   color: rgb(238, 238, 238);
   cursor: pointer;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 /* Header */
@@ -243,8 +250,6 @@ header nav h1 {
 
 form * {
   font-size: 1.5rem;
-  border-radius: .5rem;
-  border: 1px solid var(--light-grey);
 }
 
 form input[type=text] {
@@ -257,10 +262,19 @@ form input[type=text]:focus {
   outline: none;
 }
 
+input,
+select,
+textarea {
+  border-radius: .3rem;
+  border: none;
+  background-color: var(--super-light-grey);
+}
+
 /* Content Container */
 
 .content-container {
   clear: both;
+  margin-top: 2.3rem;
   padding: 1rem 1rem;
 }
 
@@ -285,6 +299,7 @@ form input[type=text]:focus {
 /* Project Content */
 
 .project-content > h1 {
+  display: inline-block;
   margin-bottom: 1rem;
 }
 
@@ -299,10 +314,54 @@ form input[type=text]:focus {
 }
 
 .project-content button:hover {
-  background: #949494;
-  color: rgb(238, 238, 238);
+  background: var(--grey-highlight);
+  color: var(--super-light-grey);
 }
 
+.project-content .menu-toggle {
+  /* position: relative; */
+  float: right;
+  margin-top: .6rem;
+}
+
+.project-content .menu-toggle::after {
+  content: '\2807';
+  font-size: 1.5rem;
+  padding-left: .2rem;
+  cursor: pointer;
+}
+
+.project-content .project-menu {
+  float: right;
+  margin-right: .5rem;
+  margin-top: .5rem;
+  font-size: .9rem;
+  box-shadow: 2px 2px 5px #646464c2;
+}
+
+.project-content .delete-menu-item {
+  padding: 0 .3rem;
+  cursor: pointer;
+  background: var(--light-grey);
+}
+
+.project-content .delete-menu-item:hover {
+  color: white;
+  background: var(--grey-highlight);
+}
+
+.project-content .delete-menu-item:active {
+  background: red;
+}
+
+.project-content .delete-icon {
+  display: inline-block;
+  margin-left: .7rem;
+}
+
+.project-content button {
+  display: block;
+}
 /* .project-content {
   padding: 0 2rem;
 }
@@ -320,7 +379,7 @@ form input[type=text]:focus {
   gap: 1rem;
   align-items: center;
   padding: 0 .5rem;
-  border-radius: .5rem;
+  border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
 }
 
@@ -346,7 +405,7 @@ form input[type=text]:focus {
 }
 
 .todo .high {
-  background: rgb(255, 94, 0);
+  background: var(--high-priority);
 }
 
 .todo .medium {
@@ -392,7 +451,7 @@ form input[type=text]:focus {
 }
 
 .todo-content .todo-description {
-  max-height: 10rem;
+  max-height: 8rem;
   overflow: auto;
 }
 
