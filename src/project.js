@@ -41,6 +41,11 @@ Project.prototype.addTodo = function(todo) {
   this._sortTodos();
 }
 
+// Delete a todo
+Project.prototype.deleteTodo = function(index) {
+  this._todos.splice(index, 1);
+}
+
 // Save Project Object
 Project.prototype.save = function() {
   Project.all.push(this);

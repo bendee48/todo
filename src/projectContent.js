@@ -15,52 +15,65 @@ const projectContent = (()=> {
     return h1;
   }
 
-  const _projectMenuButton = ()=> {
+  const _menuButton = (klass)=> {
     const container = document.createElement('div');
-    container.classList.add('menu-toggle');
-    // container.appendChild(_projectMenu());
-    container.addEventListener('click', _toggleProjectMenu);
+    container.classList.add('menu-toggle', `${klass}-toggle`);
+    container.addEventListener('click', function() {
+      _toggleMenu(klass);
+    });
     return container;
   }
 
-  const _toggleProjectMenu = ()=> {
-    const menu = document.querySelector('.project-menu');
+  
+  const _toggleMenu = (klass)=> {
+    const menu = document.querySelector(`.${klass}`);
+    console.log(klass)
     menu.classList.toggle('hide');
   }
-
-  const _projectMenu = ()=> {
+  
+  const _menu = ({klass, func}, index)=> {
     const container = document.createElement('div');
-    const deleteItem = _menuDeleteItem();
-    container.classList.add('project-menu', 'hide');
+    const deleteItem = _menuDeleteItem(func, index, klass);
+    container.classList.add(klass, 'menu', 'hide');
     container.appendChild(deleteItem);
     return container;
   }
 
-  const _menuDeleteItem = ()=> {
+  const _menuContainer = ({klass, func}, index)=> {
+    const container = document.createElement('div');
+    container.classList.add('menu-container');
+    container.appendChild(_menuButton(klass));
+    container.appendChild(_menu({klass, func}, index));
+    return container;
+  }
+
+  const _menuDeleteItem = (func, index, klass)=> {
     const deleteItem = document.createElement('div');
     const icon = _deleteIcon();
     deleteItem.innerText = "Delete";
     deleteItem.appendChild(icon);
     deleteItem.classList.add('delete-menu-item');
-    deleteItem.addEventListener('click', _deleteProject);
+    deleteItem.addEventListener('click', function() {
+      func(index, klass);
+    });
     return deleteItem;
   }
 
   const _deleteIcon = ()=> {
     const icon = document.createElement('div');
     icon.classList.add('delete-icon');
-    icon.innerHTML = '<span>&#10005;</span>';
+    icon.innerHTML = '<span>&#10006;</span>';
     return icon;
   }
 
-  const _deleteProject = ()=> {
+  const _deleteProject = (index, klass)=> {
     if (confirm("Are you sure you want to delete this project?")) {
       const project = document.querySelector('.project-content');
       Project.delete({index: project.dataset.index});
       eventObserver.run("Display Projects", Project.all); // Run Project Page update
       eventObserver.run("Close Modal"); // Closes an open modal
     } else {
-      _toggleProjectMenu();
+      _toggleMenu(klass);
     }
   }
 
@@ -99,6 +112,17 @@ const projectContent = (()=> {
     priority.classList.add('todo-priority', todo.priority);
     return priority;
   }
+
+  const _deleteTodo = (index, klass)=> {
+    if (confirm("Are you sure you want to delete this todo?")) {
+      const projectEl = document.querySelector('.project-content');
+      const project = Project.all[projectEl.dataset.index]
+      project.deleteTodo(index);
+      updateTodos(project);
+    } else {
+      _toggleMenu(klass);
+    }
+  }
   
   const _addTodos = (project)=> {
     let container = _todoContainer();
@@ -113,6 +137,7 @@ const projectContent = (()=> {
       todoBox.appendChild(_todoTitle(todo));
       todoBox.appendChild(_todoDueDate(todo));
       todoBox.appendChild(_todoPriority(todo));
+      container.appendChild(_menuContainer({klass: `todo-menu-${index}`, func: _deleteTodo}, index));
       container.appendChild(todoBox);
     });
     return container;
@@ -133,8 +158,7 @@ const projectContent = (()=> {
     let project = Project.all[e.currentTarget.dataset.index];
     container.dataset.index = e.currentTarget.dataset.index;
     container.appendChild(_projectTitle(project.title));
-    container.appendChild(_projectMenuButton());
-    container.appendChild(_projectMenu());
+    container.appendChild(_menuContainer({klass: 'project-menu', func: _deleteProject}));
     container.appendChild(_newTodoBtn());
     container.appendChild(_addTodos(project));
     return container;
