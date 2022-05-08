@@ -301,6 +301,7 @@ textarea {
 .project-content > h1 {
   display: inline-block;
   margin-bottom: 1rem;
+  border: var(--border);
 }
 
 .project-content button {
@@ -318,25 +319,36 @@ textarea {
   color: var(--super-light-grey);
 }
 
-.project-content .menu-toggle {
-  /* position: relative; */
+.project-content .menu-container {
+  position: relative;
   float: right;
-  margin-top: .6rem;
+  border: var(--border)
+}
+
+.project-content .menu-toggle {
+  float: right;
+}
+
+.project-content .project-menu-toggle {
+  padding-top: .8rem;
 }
 
 .project-content .menu-toggle::after {
   content: '\2807';
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   padding-left: .2rem;
   cursor: pointer;
 }
 
-.project-content .project-menu {
-  float: right;
-  margin-right: .5rem;
-  margin-top: .5rem;
+.project-content .menu {
+  position:absolute;
+  left: -75px;
   font-size: .9rem;
   box-shadow: 2px 2px 5px #646464c2;
+}
+
+.project-content .project-menu {
+
 }
 
 .project-content .delete-menu-item {
@@ -381,6 +393,7 @@ textarea {
   padding: 0 .5rem;
   border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
+  border: var(--border)
 }
 
 .todo :nth-child(2) {
