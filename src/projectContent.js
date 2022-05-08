@@ -23,7 +23,6 @@ const projectContent = (()=> {
     });
     return container;
   }
-
   
   const _toggleMenu = (klass)=> {
     const menu = document.querySelector(`.${klass}`);
@@ -73,7 +72,7 @@ const projectContent = (()=> {
       eventObserver.run("Display Projects", Project.all); // Run Project Page update
       eventObserver.run("Close Modal"); // Closes an open modal
     } else {
-      _toggleMenu(klass);
+      _toggleMenu(klass); // Close open menu
     }
   }
 

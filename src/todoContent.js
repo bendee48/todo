@@ -17,6 +17,24 @@ const todoContent = (()=> {
     return btn;
   }
 
+  const _deleteBtn = (todo, project)=> {
+    const btn = document.createElement('button');
+    btn.classList.add('delete-btn', 'btn');
+    btn.innerText = 'Delete Todo'
+    btn.addEventListener('click', function() {
+      _deleteTodo(todo, project);
+    });
+    return btn;
+  }
+
+  const _deleteTodo = (todo, project)=> {
+    if (confirm('Are you sure sure you want to delete this todo?')) {
+      project.deleteTodoByTitle(todo.title)
+      eventObserver.run('Update Todos', project);
+      eventObserver.run('Close Modal');
+    }
+  }
+
   const _todoTitle = (todo)=> {
     let title = document.createElement('h1');
     title.classList.add('todo-title');
@@ -43,12 +61,13 @@ const todoContent = (()=> {
     return priority;
   }
 
-  const _displayTodo = (todo)=> {
+  const _displayTodo = (todo, project)=> {
     container.append(_todoTitle(todo));
     container.append(_todoDescription(todo));
     container.append(_todoDueDate(todo));
     container.append(_todoPriority(todo));
     container.append(_saveBtn(todo));
+    container.append(_deleteBtn(todo, project));
   }
 
   const _saveChanges = (todo)=> {
@@ -102,7 +121,7 @@ const todoContent = (()=> {
     project = Project.all[projectElement.dataset.index];
     // Get clicked on todo object. currentTarget gets element listener was originally set on
     let todo = project.todos[e.currentTarget.dataset.index];
-    _displayTodo(todo);
+    _displayTodo(todo, project);
     return container;
   }
 

@@ -46,6 +46,17 @@ Project.prototype.deleteTodo = function(index) {
   this._todos.splice(index, 1);
 }
 
+// Delete todo by title
+Project.prototype.deleteTodoByTitle = function(title) {
+  for (let i in this._todos) {
+    if (this._todos[i].title === title) {
+      this._todos.splice(i, 1);
+      return true;
+    }
+  }
+  return false;
+}
+
 // Save Project Object
 Project.prototype.save = function() {
   Project.all.push(this);

@@ -299,9 +299,9 @@ textarea {
 /* Project Content */
 
 .project-content > h1 {
+  /* Project title */
   display: inline-block;
   margin-bottom: 1rem;
-  border: var(--border);
 }
 
 .project-content button {
@@ -322,7 +322,6 @@ textarea {
 .project-content .menu-container {
   position: relative;
   float: right;
-  border: var(--border)
 }
 
 .project-content .menu-toggle {
@@ -393,7 +392,6 @@ textarea {
   padding: 0 .5rem;
   border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
-  border: var(--border)
 }
 
 .todo :nth-child(2) {
@@ -471,6 +469,21 @@ textarea {
 .todo-content .todo-title {
   max-height: 7rem;
   overflow: auto;
+}
+
+.todo-content .save-btn {
+  padding: .5rem 1.3rem;
+}
+
+.todo-content .delete-btn {
+  margin-top: 1rem;
+  font-size: .8rem;
+  padding: 0 .3rem;
+  background: var(--high-priority);
+}
+
+.todo-content .delete-btn:active {
+  background: red;
 }
 
 /* Errors */
