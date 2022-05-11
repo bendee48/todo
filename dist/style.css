@@ -232,6 +232,8 @@ header nav h1 {
 
 .modal-main .close-btn {
   float: right;
+  font-size: 1.75rem;
+  cursor: pointer;
 }
 
 .modal-main form {
@@ -275,6 +277,7 @@ textarea {
 .content-container {
   clear: both;
   margin-top: 2.3rem;
+  margin-bottom: 1rem;
   padding: 1rem 1rem;
 }
 

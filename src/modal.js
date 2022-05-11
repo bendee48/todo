@@ -16,12 +16,13 @@ const modal = (()=> {
   }
 
   const _createCloseBtn = ()=> {
-    const btn = document.createElement('button');
-    btn.innerText = 'Close';
+    const btn = document.createElement('div');
+    btn.innerHTML = '<span aria-hidden="true">&#10006;</span>';
+    btn.ariaLabel = 'Close';
     btn.classList.add('close-btn');
     btn.addEventListener('click', function() {
       closeModal();
-    });
+    })
     return btn;
   }
 
@@ -63,7 +64,7 @@ const modal = (()=> {
     }
   }
 
-  const focusCloseBtn = ()=> {
+  const _focusCloseBtn = ()=> {
     const closeBtn = document.querySelector('.close-btn');
     closeBtn.focus();
   }
@@ -82,7 +83,7 @@ const modal = (()=> {
     let modal = _createModal(content);
     modal.classList.add('modal-open');
     pageContainer.appendChild(modal);
-    focusCloseBtn(); // Pull focus onto modal (close button) when opened, away from trigger
+    _focusCloseBtn(); // Pull focus onto modal (close button) when opened, away from trigger
   }
 
   return { run, closeModal, clearContent }
