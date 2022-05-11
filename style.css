@@ -224,7 +224,7 @@ header nav h1 {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   .modal-main {
     width: 90%;
   }
@@ -305,6 +305,13 @@ textarea {
   /* Project title */
   display: inline-block;
   margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+@media (max-width: 460px) {
+  .project-content > h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .project-content button {
@@ -325,6 +332,7 @@ textarea {
 .project-content .menu-container {
   position: relative;
   float: right;
+  clear: both;
 }
 
 .project-content .menu-toggle {
@@ -342,15 +350,17 @@ textarea {
   cursor: pointer;
 }
 
+@media (max-width: 460px) {
+  .project-content .menu-toggle::after {
+    font-size: 1.2rem;
+  }
+}
+
 .project-content .menu {
   position:absolute;
   left: -75px;
   font-size: .9rem;
   box-shadow: 2px 2px 5px #646464c2;
-}
-
-.project-content .project-menu {
-
 }
 
 .project-content .delete-menu-item {
@@ -376,15 +386,6 @@ textarea {
 .project-content button {
   display: block;
 }
-/* .project-content {
-  padding: 0 2rem;
-}
-
-@media (max-width: 500px) {
-  .project-content {
-    padding: 1rem 1rem;
-  }
-} */
 
 /* Todos */
 
@@ -410,12 +411,28 @@ textarea {
   font-size: 1.4rem;
 }
 
+@media (max-width: 460px) {
+  .todo h2 {
+    font-size: 1.2rem;
+  }
+}
+
 .todo-priority {
   font-size: .95rem;
   padding: 0 .5rem;
   border-radius: .5rem;
   text-align: center;
   background: var(--light-grey);
+}
+
+@media (max-width: 460px) {
+  .todo-priority {
+    font-size: .8rem;
+  }
+
+  .todo-dueDate {
+    font-size: .8rem;
+  }
 }
 
 .todo .high {
