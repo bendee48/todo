@@ -26,7 +26,6 @@ const projectContent = (()=> {
   
   const _toggleMenu = (klass)=> {
     const menu = document.querySelector(`.${klass}`);
-    console.log(klass)
     menu.classList.toggle('hide');
   }
   
@@ -70,6 +69,7 @@ const projectContent = (()=> {
       const project = document.querySelector('.project-content');
       Project.delete({index: project.dataset.index});
       eventObserver.run("Display Projects", Project.all); // Run Project Page update
+      eventObserver.run("Save Projects") // Save updated projects to local
       eventObserver.run("Close Modal"); // Closes an open modal
     } else {
       _toggleMenu(klass); // Close open menu
@@ -117,6 +117,7 @@ const projectContent = (()=> {
       const projectEl = document.querySelector('.project-content');
       const project = Project.all[projectEl.dataset.index]
       project.deleteTodo(index);
+      eventObserver.run("Save Projects"); // Save updated projects to local
       updateTodos(project);
     } else {
       _toggleMenu(klass);

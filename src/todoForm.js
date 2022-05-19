@@ -53,9 +53,9 @@ const todoForm = (()=> {
     option1.value = "low";
     option1.text = "low";
     if (defaultPriority === "low") option1.selected = true;
-    option2.value = "medium";
-    option2.text = "medium";
-    if (defaultPriority === "medium") option2.selected = true;
+    option2.value = "med";
+    option2.text = "med";
+    if (defaultPriority === "med") option2.selected = true;
     option3.value = "high";
     option3.text = "high";
     if (defaultPriority === "high") option3.selected = true;
@@ -99,6 +99,7 @@ const todoForm = (()=> {
     let priority = formData.get('priority');
     let todo = new Todo({title, description, dueDate, priority});
     _addTodoToProject(todo);
+    eventObserver.run("Save Projects") // Save updated projects to local
     eventObserver.run("Close Modal"); // Closes an open modal
   } 
 

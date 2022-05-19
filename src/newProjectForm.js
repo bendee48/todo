@@ -42,6 +42,7 @@ const newProjectForm = (()=> {
     const formData = new FormData(e.target);
     let title = formData.get('title');
     eventObserver.run("Create Project", title); // Runs the Project.create function
+    eventObserver.run("Save Projects"); // Save Updated projects to local
     eventObserver.run("Close Modal"); // Closes an open modal
     eventObserver.run("Display Projects", projectObj.all); // Run Project Page update
   } 

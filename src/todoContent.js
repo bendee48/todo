@@ -31,6 +31,7 @@ const todoContent = (()=> {
     if (confirm('Are you sure sure you want to delete this todo?')) {
       project.deleteTodoByTitle(todo.title)
       eventObserver.run('Update Todos', project);
+      eventObserver.run('Save Projects') // Save updated projects to local
       eventObserver.run('Close Modal');
     }
   }
@@ -82,6 +83,7 @@ const todoContent = (()=> {
     todo.dueDate = date.value;
     todo.priority = priority.value;
     eventObserver.run('Update Todos', project)
+    eventObserver.run("Save Projects"); // Save updated projects to local
     eventObserver.run('Close Modal');
   }
 

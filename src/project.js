@@ -1,3 +1,5 @@
+import Todo from './todo.js';
+
 function Project(title) {
   this._title = title;
   this._todos = [];
@@ -16,6 +18,44 @@ Project.create = function(title) {
 // Static method to delete a Project from it's index
 Project.delete = function({index}) {
   Project.all.splice(index, 1);
+}
+
+// Static method to save all projects to localStorage
+Project.saveLocal = function() {
+  localStorage.setItem('projects', JSON.stringify(Project.all));
+}
+
+// Static method to retrieve all projects from localStorage
+Project.loadLocal = function() {
+  const localObjs = JSON.parse(localStorage.getItem('projects'));
+  if (localObjs === null) return null; // Return if 'projects' empty
+
+  Project.all = []; // Clear any exisitng projects to avoid duplicates
+  localObjs.forEach(obj => { // Parse local objects into Projects & Todos
+    parseLocalObj(obj);
+  });
+}
+
+// Helper for loadLocal()
+function parseLocalObj(obj) {
+  if (obj._todos.length > 0) {
+    let project = new Project(obj._title);
+    parseTodos(obj, project);
+    project.save();
+  } else {
+    Project.create(obj._title);
+  }
+}
+
+// Helper for loadLocal()
+function parseTodos(obj, project) {
+  obj._todos.forEach(todo => {
+    let newTodo = new Todo({title: todo._title, 
+                            description: todo._description,
+                            dueDate: todo._dueDate,
+                            priority: todo._priority})
+    project.addTodo(newTodo);
+  });
 }
 
 // Getters and setters for Project attributes
