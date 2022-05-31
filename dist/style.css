@@ -315,6 +315,7 @@ textarea {
 }
 
 .project-content button {
+  display: block;
   padding: .2rem 1rem;
   margin-bottom: .5rem;
   border-radius: .5rem;
@@ -329,21 +330,21 @@ textarea {
   color: var(--super-light-grey);
 }
 
-.project-content .menu-container {
+/* Menu */
+
+.menu-container {
   position: relative;
   float: right;
   clear: both;
+  padding-left: .3rem;
+  z-index: 1;
 }
 
-.project-content .menu-toggle {
+.menu-toggle {
   float: right;
 }
 
-.project-content .project-menu-toggle {
-  padding-top: .8rem;
-}
-
-.project-content .menu-toggle::after {
+.menu-toggle::after {
   content: '\2807';
   font-size: 1.4rem;
   padding-left: .2rem;
@@ -351,41 +352,65 @@ textarea {
 }
 
 @media (max-width: 460px) {
-  .project-content .menu-toggle::after {
+  .menu-toggle::after {
     font-size: 1.2rem;
   }
 }
 
-.project-content .menu {
+.project-menu-toggle {
+  padding-top: .8rem;
+}
+
+.menu {
   position:absolute;
-  left: -75px;
+  width: 9rem;
+  left: -145px;
+  bottom: 20px;
   font-size: .9rem;
   box-shadow: 2px 2px 5px #646464c2;
 }
 
-.project-content .delete-menu-item {
+.menu-item {
   padding: 0 .3rem;
+  padding: .5rem;
   cursor: pointer;
   background: var(--light-grey);
 }
 
-.project-content .delete-menu-item:hover {
+.menu-item:hover {
   color: white;
   background: var(--grey-highlight);
 }
 
-.project-content .delete-menu-item:active {
+.delete-item {
+  position: relative;
+  cursor: pointer;
+  background: var(--light-grey);
+  border-bottom: 1px solid var(--dark-grey);
+}
+
+.delete-item:active {
   background: red;
 }
 
-.project-content .delete-icon {
-  display: inline-block;
-  margin-left: .7rem;
+.delete-item:hover .delete-icon {
+  color: rgb(250, 14, 53);
 }
 
-.project-content button {
-  display: block;
+.delete-icon {
+  float: right;
+  margin-left: .7rem;
+  color: rgb(170, 0, 0);
 }
+
+.complete-icon {
+  float: right;
+  color: green;
+}
+
+.complete-item:hover .complete-icon {
+  color:rgb(0, 255, 55)
+} 
 
 /* Todos */
 
@@ -393,9 +418,13 @@ textarea {
   display: flex;
   gap: 1rem;
   align-items: center;
-  padding: 0 .5rem;
   border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
+}
+
+.todo-strikethrough {
+  text-decoration: line-through;
+  opacity: .5;
 }
 
 .todo :nth-child(2) {

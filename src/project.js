@@ -53,7 +53,8 @@ function parseTodos(obj, project) {
     let newTodo = new Todo({title: todo._title, 
                             description: todo._description,
                             dueDate: todo._dueDate,
-                            priority: todo._priority})
+                            priority: todo._priority,
+                            complete: todo._complete})
     project.addTodo(newTodo);
   });
 }

@@ -1,8 +1,10 @@
-function Todo({title, description, dueDate, priority}) {
+// Setting named parameters to empty obj, avoids errors for default values
+function Todo({title, description, dueDate, priority, complete = false} = {}) {
   this._title = title;
   this._description = description;
   this._dueDate = dueDate;
   this._priority = priority;
+  this._complete = complete;
 }
 
 Object.defineProperties(Todo.prototype, {
@@ -36,6 +38,14 @@ Object.defineProperties(Todo.prototype, {
     },
     set: function(priority) {
       this._priority = priority;
+    }
+  },
+  complete: {
+    get: function() {
+      return this._complete;
+    },
+    set: function(complete) {
+      this._complete = complete;
     }
   }
 });

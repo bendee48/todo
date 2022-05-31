@@ -108,7 +108,7 @@ const todoForm = (()=> {
     let projectElement = document.querySelector('.project-content'); 
     let project = Project.all[projectElement.dataset.index];
     project.addTodo(todo);
-    projectContent.updateTodos(project); // Updating todos for Project
+    projectContent.updateTodos(); // Updating todos for Project
   }
 
   const _clearContent = ()=> {
