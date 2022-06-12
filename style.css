@@ -74,6 +74,7 @@ select {
   --grey-highlight: #949494;
   --berry: #c44061;
   --high-priority: #ff5e00;
+  --blue: #4b2ca8;
 }
 
 body {
@@ -91,10 +92,6 @@ body {
   background: #949494;
   color: rgb(238, 238, 238);
   cursor: pointer;
-}
-
-.hide {
-  visibility: hidden;
 }
 
 /* Header */
@@ -340,6 +337,10 @@ textarea {
   z-index: 1;
 }
 
+.menu-container:hover .menu {
+  display: block;
+}
+
 .menu-toggle {
   float: right;
 }
@@ -357,11 +358,13 @@ textarea {
   }
 }
 
+
 .project-menu-toggle {
   padding-top: .8rem;
 }
 
 .menu {
+  display: none;
   position:absolute;
   width: 9rem;
   left: -145px;
@@ -370,22 +373,22 @@ textarea {
   box-shadow: 2px 2px 5px #646464c2;
 }
 
+
 .menu-item {
   padding: 0 .3rem;
   padding: .5rem;
   cursor: pointer;
-  background: var(--light-grey);
+  background: rgb(243, 191, 191);
 }
 
 .menu-item:hover {
-  color: white;
-  background: var(--grey-highlight);
+  color: var(--blue);
+  background: rgb(224, 168, 168);
 }
 
 .delete-item {
   position: relative;
   cursor: pointer;
-  background: var(--light-grey);
   border-bottom: 1px solid var(--dark-grey);
 }
 
@@ -394,13 +397,17 @@ textarea {
 }
 
 .delete-item:hover .delete-icon {
-  color: rgb(250, 14, 53);
+  color: #fa0e35;
+}
+
+.delete-item:active .delete-icon {
+  color: var(--blue);
 }
 
 .delete-icon {
   float: right;
   margin-left: .7rem;
-  color: rgb(170, 0, 0);
+  color: #aa0000;
 }
 
 .complete-icon {
@@ -410,7 +417,7 @@ textarea {
 
 .complete-item:hover .complete-icon {
   color:rgb(0, 255, 55)
-} 
+}
 
 /* Todos */
 
