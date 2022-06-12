@@ -94,6 +94,28 @@ body {
   cursor: pointer;
 }
 
+/* Toolbar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--light-grey);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--grey-highlight);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
 /* Header */
 
 header nav h1 {
@@ -298,6 +320,10 @@ textarea {
 
 /* Project Content */
 
+.project-content {
+  max-height: 100%;
+}
+
 .project-content > h1 {
   /* Project title */
   display: inline-block;
@@ -341,6 +367,16 @@ textarea {
   display: block;
 }
 
+.menu-container:first-child .menu {
+  /* Position first todo menu if menu overlows */
+  top: 0;
+}
+
+.menu-container:nth-last-child(2) .menu {
+  /* Position last todo menu if menu overlows */
+  top: -2.5rem;
+}
+
 .menu-toggle {
   float: right;
 }
@@ -358,17 +394,16 @@ textarea {
   }
 }
 
-
 .project-menu-toggle {
-  padding-top: .8rem;
+  padding-top: .5rem;
 }
 
 .menu {
   display: none;
-  position:absolute;
+  position: absolute;
   width: 9rem;
   left: -145px;
-  bottom: 20px;
+  top: -.5rem;
   font-size: .9rem;
   box-shadow: 2px 2px 5px #646464c2;
 }
@@ -420,6 +455,11 @@ textarea {
 }
 
 /* Todos */
+
+.todos {
+  max-height: 55vh;
+  overflow: auto;
+}
 
 .todo {
   display: flex;

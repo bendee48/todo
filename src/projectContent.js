@@ -28,7 +28,7 @@ const projectContent = (()=> {
     container.classList.add(klass, 'menu');
     container.appendChild(deleteItem);
     if (/todo-menu/.test(klass)) { // Only add a complete item if it's a todo menu
-      const completeItem = _menuCompletedItem(index, klass);
+      const completeItem = _menuCompletedItem(index);
       container.appendChild(completeItem); 
     }
     return container;
@@ -54,7 +54,7 @@ const projectContent = (()=> {
     return deleteItem;
   }
 
-  const _menuCompletedItem = (index, klass)=> {
+  const _menuCompletedItem = (index)=> {
     const completeItem = document.createElement('div');
     let currentTodo = project.todos[index];
     if (currentTodo.complete) {
@@ -65,7 +65,7 @@ const projectContent = (()=> {
     completeItem.appendChild(_completeIcon());
     completeItem.classList.add('menu-item', 'complete-item');
     completeItem.addEventListener('click', function() {
-      _toggleComplete(index, klass, this);
+      _toggleComplete(index, this);
     });
     return completeItem;
   }
@@ -78,7 +78,7 @@ const projectContent = (()=> {
   } 
 
   // Toggle strikethrough class and menu item text
-  const _toggleComplete = (index, klass, ele)=> {
+  const _toggleComplete = (index, ele)=> {
     const todoContainer = document.querySelector(`.todo[data-index="${index}"]`);
     if (todoContainer.classList.contains('todo-strikethrough')) {
       todoContainer.classList.remove('todo-strikethrough');
