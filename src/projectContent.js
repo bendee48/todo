@@ -19,21 +19,13 @@ const projectContent = (()=> {
   const _menuButton = (klass)=> {
     const container = document.createElement('div');
     container.classList.add('menu-toggle', `${klass}-toggle`);
-    container.addEventListener('click', function() {
-      _toggleMenu(klass);
-    });
     return container;
-  }
-  
-  const _toggleMenu = (klass)=> {
-    const menu = document.querySelector(`.${klass}`);
-    menu.classList.toggle('hide');
   }
   
   const _menu = ({klass, func}, index)=> {
     const container = document.createElement('div');
     const deleteItem = _menuDeleteItem(func, index, klass);
-    container.classList.add(klass, 'menu', 'hide');
+    container.classList.add(klass, 'menu');
     container.appendChild(deleteItem);
     if (/todo-menu/.test(klass)) { // Only add a complete item if it's a todo menu
       const completeItem = _menuCompletedItem(index, klass);
@@ -98,7 +90,6 @@ const projectContent = (()=> {
       project.todos[index].complete = true;
     }
     ele.appendChild(_completeIcon());
-    _toggleMenu(klass);
     eventObserver.run("Save Projects") // Save updated projects to local
   }
 
@@ -109,14 +100,12 @@ const projectContent = (()=> {
     return icon;
   }
 
-  const _deleteProject = (index, klass)=> {
+  const _deleteProject = (index)=> {
     if (confirm("Are you sure you want to delete this project?")) {
       Project.delete({index: index});
       eventObserver.run("Display Projects", Project.all); // Run Project Page update
       eventObserver.run("Save Projects") // Save updated projects to local
       eventObserver.run("Close Modal"); // Closes an open modal
-    } else {
-      _toggleMenu(klass); // Close open menu
     }
   }
 
@@ -156,13 +145,11 @@ const projectContent = (()=> {
     return priority;
   }
 
-  const _deleteTodo = (index, klass)=> {
-    if (confirm("Are you sure you want to delete this todo?")) {
+  const _deleteTodo = (index)=> {
+    if (confirm("Are you sure you want to delete this Todo?")) {
       project.deleteTodo(index);
       eventObserver.run("Save Projects"); // Save updated projects to local
       updateTodos();
-    } else {
-      _toggleMenu(klass);
     }
   }
   
