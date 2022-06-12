@@ -18,13 +18,15 @@ const todoContent = (()=> {
   }
 
   const _deleteBtn = (todo, project)=> {
-    const btn = document.createElement('button');
-    btn.classList.add('delete-btn', 'btn');
-    btn.innerText = 'Delete Todo'
-    btn.addEventListener('click', function() {
+    const icon = document.createElement('span');
+    icon.classList.add('material-symbols-outlined');
+    icon.innerText = "delete";
+    icon.title = "Delete"
+    icon.classList.add('delete-icon');
+    icon.addEventListener('click', function() {
       _deleteTodo(todo, project);
     });
-    return btn;
+    return icon;
   }
 
   const _deleteTodo = (todo, project)=> {

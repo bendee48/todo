@@ -64,6 +64,16 @@ select {
   font: inherit;
 }
 
+/* Icons */
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 200,
+  'opsz' 48
+}
+
 /*** Main Styling ***/
 
 :root {
@@ -571,15 +581,18 @@ textarea {
   padding: .5rem 1.3rem;
 }
 
-.todo-content .delete-btn {
+.todo-content .delete-icon {
   margin-top: 1rem;
-  font-size: .8rem;
-  padding: 0 .3rem;
-  background: var(--high-priority);
+  cursor: pointer;
+  font-size: 2.5rem;
 }
 
-.todo-content .delete-btn:active {
-  background: red;
+.todo-content .delete-icon:hover {
+  color: #ca0000;
+}
+
+.todo-content .delete-icon:active {
+  color: red;
 }
 
 /* Errors */

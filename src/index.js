@@ -19,16 +19,7 @@ let project1 = Project.create('October')
 project.addTodo(todo)
 project.addTodo(todo1)
 project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
-project.addTodo(todo2)
+
 
 
 // Display projects
