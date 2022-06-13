@@ -378,13 +378,8 @@ textarea {
 }
 
 .menu-container:first-child .menu {
-  /* Position first todo menu if menu overlows */
+  /* Position first todo menu for overlow */
   top: 0;
-}
-
-.menu-container:nth-last-child(2) .menu {
-  /* Position last todo menu if menu overlows */
-  top: -2.5rem;
 }
 
 .menu-toggle {
@@ -417,7 +412,6 @@ textarea {
   font-size: .9rem;
   box-shadow: 2px 2px 5px #646464c2;
 }
-
 
 .menu-item {
   padding: 0 .3rem;
@@ -467,6 +461,7 @@ textarea {
 /* Todos */
 
 .todos {
+  min-height: 150px;
   max-height: 55vh;
   overflow: auto;
 }
@@ -474,6 +469,7 @@ textarea {
 .todo {
   display: flex;
   gap: 1rem;
+  padding: 0 .2rem;
   align-items: center;
   border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
