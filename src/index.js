@@ -8,19 +8,16 @@ import projectContent from './projectContent.js';
 // Sample Data - Creating a todo
 let obj = {title: "Buy new suitcase", description: "A description", dueDate: '2022-10-08', priority: 'med'}
 let obj1 = {title: "Pick up travel docs", description: "", dueDate: '2022-10-10', priority: 'high'}
-let obj2 = {title: "Buy Sunglasses", description: "Use voucher from birthday", dueDate: '2022-10-19', priority: 'low'}
+let obj2 = {title: "Buy sunglasses", description: "Use voucher from birthday", dueDate: '2022-10-19', priority: 'low'}
 let todo = new Todo(obj)
 let todo1 = new Todo(obj1)
 let todo2 = new Todo(obj2)
 
 // Sample Data - Creating projects/ adding todos to project
-let project = Project.create('Paris Trip')
-let project1 = Project.create('October')
+let project = Project.create('Example')
 project.addTodo(todo)
 project.addTodo(todo1)
 project.addTodo(todo2)
-
-
 
 // Display projects
 Project.loadLocal(); // Load any saved projects
