@@ -261,7 +261,6 @@ header nav h1 {
 @media (max-width: 760px) {
   .modal-main {
     width: 90%;
-    min-height: 80vh;
   }
 }
 
@@ -383,8 +382,13 @@ textarea {
   display: block;
 }
 
+.menu-container:nth-last-child(2) .menu {
+  /* Position last todo menu on overflow */
+  top: -2.5rem;
+}
+
 .menu-container:first-child .menu {
-  /* Position first todo menu for overlow */
+  /* Position first todo menu on overlow (overides last if there's only 1) */
   top: 0;
 }
 
@@ -467,7 +471,7 @@ textarea {
 /* Todos */
 
 .todos {
-  min-height: 150px;
+  min-height: 40vh;
   max-height: 55vh;
   overflow: auto;
 }
@@ -475,7 +479,7 @@ textarea {
 .todo {
   display: flex;
   gap: 1rem;
-  padding: 0 .2rem;
+  padding: 0 .3rem;
   align-items: center;
   border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
