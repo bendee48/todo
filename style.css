@@ -405,12 +405,19 @@ textarea {
 
 @media (max-width: 460px) {
   .menu-toggle::after {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
+    font-size: 1.8rem;
   }
 }
 
 .project-menu-toggle {
   padding-top: .5rem;
+}
+
+@media (max-width: 500px) {
+  .project-menu-toggle {
+    padding-top: 0;
+  }
 }
 
 .menu {
@@ -483,6 +490,12 @@ textarea {
   align-items: center;
   border-bottom: 1px solid rgba(161, 161, 161, 0.4);
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .todo {
+    padding: 1rem .3rem;
+  }
 }
 
 .todo-strikethrough {
