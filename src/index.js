@@ -7,13 +7,22 @@ import projectContent from './projectContent';
 
 // Sample Data - Creating a todo
 const obj = {
-  title: 'Buy new suitcase', description: 'A description', dueDate: '2022-10-08', priority: 'med',
+  title: 'Buy new suitcase',
+  description: 'A description',
+  dueDate: '2022-10-08',
+  priority: 'med',
 };
 const obj1 = {
-  title: 'Pick up travel docs', description: '', dueDate: '2022-10-10', priority: 'high',
+  title: 'Pick up travel docs',
+  description: '',
+  dueDate: '2022-10-10',
+  priority: 'high',
 };
 const obj2 = {
-  title: 'Buy sunglasses', description: 'Use voucher from birthday', dueDate: '2022-10-19', priority: 'low',
+  title: 'Buy sunglasses',
+  description: 'Use voucher from birthday',
+  dueDate: '2022-10-19',
+  priority: 'low',
 };
 const todo = new Todo(obj);
 const todo1 = new Todo(obj1);
@@ -32,12 +41,27 @@ projectsPage.displayProjects(projects);
 
 // Event Observers
 // Update Project display on creation of a new Project
-eventObserver.subscribe({ subName: 'Display Projects', funcToCall: projectsPage.displayProjects });
+eventObserver.subscribe({
+  subName: 'Display Projects',
+  funcToCall: projectsPage.displayProjects,
+});
 // Create and Save a Project
-eventObserver.subscribe({ subName: 'Create Project', funcToCall: Project.create });
+eventObserver.subscribe({
+  subName: 'Create Project',
+  funcToCall: Project.create,
+});
 // Close Modal
-eventObserver.subscribe({ subName: 'Close Modal', funcToCall: modal.closeModal });
+eventObserver.subscribe({
+  subName: 'Close Modal',
+  funcToCall: modal.closeModal,
+});
 // Update Todos
-eventObserver.subscribe({ subName: 'Update Todos', funcToCall: projectContent.updateTodos });
+eventObserver.subscribe({
+  subName: 'Update Todos',
+  funcToCall: projectContent.updateTodos,
+});
 // Save Projects to local
-eventObserver.subscribe({ subName: 'Save Projects', funcToCall: Project.saveLocal });
+eventObserver.subscribe({
+  subName: 'Save Projects',
+  funcToCall: Project.saveLocal,
+});
